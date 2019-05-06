@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Twitter</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="styles/styles.css"
+      type="text/css"
+      media="screen"
+      title="no title"
+      charset="utf-8"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="compose">
+        <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
+        <div class="input-container">
+          <textarea
+            placeholder="What's happening?"
+            name="tweetText"
+            id="composeInput"
+            maxlength="280"
+            data-testid="tweet-input"
+          ></textarea>
+          <div class="input-button" data-testid="input-button">
+            <i class="fas fa-image"></i>
+          </div>
+          <div class="actions" data-testid="tweet-actions">
+            <div class="action-buttons">
+              <button class="icon-button">
+                <i class="fas fa-image"></i>
+              </button>
+              <button class="icon-button">
+                <i class="fas fa-file-video"></i>
+              </button>
+              <button class="icon-button">
+                <i class="fas fa-chart-bar"></i>
+              </button>
+              <button class="icon-button">
+                <i class="fas fa-map-marker-alt"></i>
+              </button>
+            </div>
+            <div class="post-actions">
+              <span class="message-count" data-testid="message-count">280</span>
+              <button class="post-tweet" data-testid="post-tweet" disabled>Tweet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tweets" data-testid="tweets">
+        <div class="tweet">
+          <div class="profile">
+            <img class="img-tweet-profile" src="img/funwatercat.jpg" />
+          </div>
+          <div class="message">
+            <div class="posted-by">
+              <span class="display-name">Michael</span
+              ><span class="handle">@sometwitterguy</span>
+            </div>
+            <div class="content">
+              <p>Today is an amazing day!</p>
+            </div>
+            <div class="tweet-actions">
+              <i class="far fa-comment"></i>
+              <i class="fas fa-retweet"></i>
+              <i class="far fa-heart"></i>
+              <i class="far fa-envelope"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+  </body>
+</html>

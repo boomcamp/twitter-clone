@@ -1,0 +1,26 @@
+{
+  "name": "twitter-clone",
+  "version": "1.0.0",
+  "description": "--- In this project you will need to implement some user interactions for a twitter clone. This clone isn't going to be an exact match with twitter but will be a good way to practice building interactive user experiences. You should have had an intro to JQuery at this point, so feel free to use JQuery to power your interactions.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "dom-testing-library": "^4.0.1",
+    "jest": "^24.8.0",
+    "jsdom": "^15.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boomcamp/twitter-clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boomcamp/twitter-clone/issues"
+  },
+  "homepage": "https://github.com/boomcamp/twitter-clone#readme"
+}

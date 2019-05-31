@@ -56,6 +56,7 @@
           </div>
         </div>
       </div>
+
       <div class="tweets" data-testid="tweets">
         <div class="tweet">
           <div class="profile">
@@ -78,7 +79,90 @@
           </div>
         </div>
       </div>
+
     </main>
+  
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script>
+    $(document).ready(function(){
+      //hides what to hide
+      $(".actions").hide() 
+      $(".tweets").hide()
+
+      //expands text area after foucus
+      $("#composeInput").focus(function(){
+        $(".actions").show(400)
+        $("#composeInput").css('height', '80px') 
+      });
+
+      //expands text area after foucus
+      $("#composeInput").focusout(function(){
+        if($(this).val() === ''){
+          $(".actions").hide()
+          $("#composeInput").css('height', '40px') 
+        }
+        
+       });
+
+       
+      //enables tweet button after typing post
+      $('#composeInput').on('keyup', function(){
+        
+        if($(this).val.length !== 0){
+            $('.post-tweet').attr('disabled', false);  
+        }
+       
+      });
+
+      //subtract the couter as the user types
+      //red text if remaining char is = to ten
+      var maxLength = 280;
+      $('#composeInput').keyup(function() {
+        
+        var length = $(this).val().length;
+        var length = maxLength-length;
+        $('.message-count').text(length);
+
+        if (length <= 10) {
+          $(".message-count").css('color', 'red')
+          console.log("red")
+        }
+        if (length >= 10) {
+          $(".message-count").css('color', '#13B5F0')
+          console.log("blue")
+        }
+
+      });
+       
+      //new tweet
+      //clear textarea
+      $('.post-tweet').click(function() {
+        $("#composeInput").css('height', '80px')
+        //save tweet to var
+        var mytweet = $('#composeInput').val()
+
+        $(".tweets").show();
+        $(".tweet:first").slideDown(500);
+        $(".tweet:first").clone().prependTo(".tweets");
+        $(".tweet:first .display-name").text('Jeff')
+        $(".tweet:first .handle").text('@jeffguy')
+        $(".tweet:first .content > p").text(mytweet)
+        $(".tweet:first .img-tweet-profile").attr('src', 'img/damenleeturks.jpg')
+        
+        //delete value
+        $('#composeInput').val('')
+        
+        var maxLength = 280;
+        var length = 0
+        $('.message-count').text('280');
+        
+      });
+
+
+
+
+
+    });
+    </script>
   </body>
 </html>

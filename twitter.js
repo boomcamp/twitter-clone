@@ -21,9 +21,11 @@ function toggleFocus(){
 }
 //toggles if input textarea is unfocused
 function toggleBlur(){
+    if(inputText.value) return;
     actionDiv.style.display = "none";
     inputBtn.style.display = "";
     inputText.style.height = "34px";
+    
 }
 //toggles if typing detected
 function toggleBtn(){

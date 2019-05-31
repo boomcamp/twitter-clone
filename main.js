@@ -41,12 +41,12 @@ $( document ).ready(function() {
          }
      }); // Limit input to 280 characters
 
-     $(".tweets").click(function() {
+     $(".actions").click(function() {
         $('.action-buttons').hide();
         $('.post-actions').hide();
     });
 
-    $(".tweets").click(function() {
+    $(".actions").click(function() {
         $("textarea").val('');
      });
 

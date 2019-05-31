@@ -42,7 +42,6 @@ main {
   border-radius: 8px;
   resize: none;
 }
-
 .compose .input-container textarea.expanded {
   height: 68px;
 }
@@ -148,3 +147,7 @@ main {
   margin-right: 32px;
 }
 
+
+.red{
+  color:red;
+}

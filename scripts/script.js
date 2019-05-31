@@ -15,6 +15,7 @@ let name;
             name: getName(),
             mail: getEmail(),
             message,
+            uploadImage,
             time: new Date()
         })
         tweets.unshift(obj);
@@ -110,6 +111,7 @@ let name;
               '<div class="content">'+
                 '<p>'+key.message+'</p>'+
              ' </div>'+
+             '<img class="imgUpload" src="'+key.uploadImage+'"/>'+
               
               '<div class="tweet-actions">'+
                 '<i class="far fa-comment"></i>'+
@@ -203,7 +205,13 @@ let name;
 
     $('button[name="image"]').on('click',function(){
         $('input[type="file"]')[0].click();
-        console.log($('.file').val());
+        $('input[type="file"]').on('change',function(){
+            if (this.files && this.files[0]) {
+                uploadImage = URL.createObjectURL(this.files[0]);
+            }
+        })
+        
+        
     })
 
     $('.img-profile').on('click',function(){

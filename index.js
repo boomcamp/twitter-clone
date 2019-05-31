@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  const $inputBtn = $(".input-button");
   $(".actions").hide();
 
   $("#composeInput").focus("click", () => {

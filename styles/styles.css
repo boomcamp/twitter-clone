@@ -148,3 +148,6 @@ main {
   margin-right: 32px;
 }
 
+.actions{
+  display: none;
+}

@@ -39,34 +39,29 @@ $('#composeInput').on('input',function (a) {
 });
 
 $('.post-tweet').click(function() {
+    var post = $('<div class="tweet">'
+    +'<div class="profile">'
+      +'<img class="img-tweet-profile" src="img/damenleeturks.jpg" />'
+    +'</div>'
+    +'<div class="message">'
+      +'<div class="posted-by">'
+        +'<span class="display-name">Jimmy</span'
+        +'><span class="handle">@sometwitterguy</span>'
+      +'</div>'
+      +'<div class="content">'
+        +'<p>'+$('#composeInput').val()+'</p>'
+      +'</div>'
+      +'<div class="tweet-actions">'
+        +'<i class="far fa-comment"></i>'
+        +'<i class="fas fa-retweet"></i>'
+        +'<i class="far fa-heart"></i>'
+        +'<i class="far fa-envelope"></i>'
+      +'</div>'
+    +'</div>'
+  +'</div>');
+    $('.tweets').prepend(post);
     $('#composeInput').removeClass('expanded');
-         $('.actions').hide();
-         $('.tweets').show();
-
-         var tweet = $('<div class="tweet">'+
-           '<div class="profile">'+
-             '<img class="img-tweet-profile" src="img/damenleeturks.jpg" />'+
-           '</div>'+
-           '<div class="message">'+
-             '<div class="posted-by">'+
-               '<span class="display-name">Jeff</span>'+
-               '<span class="handle">@jeffguy</span>'+
-               '<span class="timeago"></span>'+
-             '</div>'+
-             '<div class="content">'+
-               '<p>'+$("#composeInput").val()+'</p>'+
-             '</div>'+
-             '<div class="tweet-actions">'+
-               '<i class="far fa-comment"></i>'+
-               '<i class="fas fa-retweet"></i>'+
-               '<i class="far fa-heart"></i>'+
-               '<i class="far fa-envelope"></i>'+
-             '</div>'+
-           '</div>'+
-         '</div>');
-
-         $('.tweets').prepend(tweet);
-         $('#composeInput').val('');
-
-    
+    actions.hide();
+    $('#composeInput').val('');
+    inputButton.show();
   })

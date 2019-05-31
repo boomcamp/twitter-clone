@@ -2,7 +2,10 @@ let boolYah = false;
 const messBox = parseInt($('.message-count').text());
 function tweet(timeLog,timeNow) {
     this.timeLog = timeLog,
-    this.timeNow = timeNow
+    this.timeNow = timeNow,
+    this.addTime = function() {
+        this.timeNow += 1;
+    }
 }
 
 let tweets = [];
@@ -62,6 +65,7 @@ $(document).ready(function() {
         let now = new Date();
         now.setSeconds(now.getSeconds());
         console.log(now);
+        tweets.push(tweet(0,0));
         $('.tweets').prepend(`<div class="tweet">`+
         `<div class="profile">`+
         `<img class="img-tweet-profile" src="https://source.unsplash.com/random/800x600" />`+
@@ -98,5 +102,11 @@ $(document).ready(function() {
             event.preventDefault();
         }
     });
+
+    /*setInterval(function() {
+        for(let x of tweets) {
+            console.log(x);
+        }
+    }, 1000);*/
 
 });

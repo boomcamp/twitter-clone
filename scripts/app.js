@@ -3,6 +3,7 @@ var composeInput = document.querySelector('#composeInput');
 var actions = document.querySelector('.actions');
 var postBtn = document.querySelector('.post-tweet');
 var imgProfile = document.querySelector('.img-profile');
+
 actions.style.display = 'none';
 
 
@@ -10,7 +11,6 @@ actions.style.display = 'none';
 composeInput.addEventListener('focus' , showComposer);
 
 composeInput.addEventListener('keyup' , tweetCompose);
-composeInput.addEventListener('blur' , hideComposer);
 
 
 var postedTweetsArr = [];

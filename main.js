@@ -8,7 +8,7 @@ $( document ).ready(function() {
         $('.post-actions').show();
     });
    
-    $('textarea').keyup(function() {
+    $("textarea").keyup(function() {
 		if($(this).val().length > 0) {
 			$('.post-tweet').removeAttr('disabled');
 		} else {
@@ -41,10 +41,13 @@ $( document ).ready(function() {
          }
      }); // Limit input to 280 characters
 
+     $(".tweets").click(function() {
+        $('.action-buttons').hide();
+        $('.post-actions').hide();
+    });
+
+    $(".tweets").click(function() {
+        $("textarea").val('');
+     });
+
 });
-
-
-
-
-
-

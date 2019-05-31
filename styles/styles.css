@@ -8,6 +8,8 @@ main {
   margin: 0 auto;
 }
 
+.nightMode {}
+
 .danger {
   color: red;
 }

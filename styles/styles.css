@@ -148,3 +148,13 @@ main {
   margin-right: 32px;
 }
 
+/* added css */
+.dark-mode{
+  color: white;
+  background-color: black;
+  border: 1px white solid;
+}
+
+.text-padding{
+  padding: 15px 0;
+}

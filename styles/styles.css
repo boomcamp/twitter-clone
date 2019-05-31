@@ -112,12 +112,12 @@ main {
 
 .tweets {
   background-color: white;
+  border: 1px solid gray;
 }
 
 .tweets .tweet {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid lightgray;
   padding: 8px;
 }
 
@@ -148,3 +148,44 @@ main {
   margin-right: 32px;
 }
 
+.white{
+  color: #e9ebec;
+}
+
+.abitwhite{
+  color: grey;
+}
+
+.abitdark{
+  background-color: #183141;
+}
+
+.dark{
+  background-color: #14202b;
+}
+
+.darker{
+  background-color: #10171e;
+}
+
+.dm-textarea{
+  background-color: #10171e;
+  color:#0084b4;
+} 
+
+.switch{
+  width: 35px;
+  height: 35px;
+}
+
+.on{
+  background-image: url("../img/on.jpeg");
+  background-size: 30px;
+  background-repeat: no-repeat;
+}
+
+.off{
+  background-image: url("../img/off.jpeg");
+  background-size: 30px;
+  background-repeat: no-repeat;
+}

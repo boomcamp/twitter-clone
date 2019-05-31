@@ -4,16 +4,14 @@ $(document).ready(function(){
     
     var originalWidth = $('#composeInput').width();
     var originalHeight = $('#composeInput').height(); 
-    
+    var doubleWidth = originalWidth * 2;
+    var doubleHeight = originalHeight * 5;
     //check if input box has val, then enable tweet button
    
-      
 
     $("#composeInput").focusin(function(){
-       let doubleH = $(this).height() * 2;
-       $(this).height(doubleH);
-       let doubleW = $(this).height() * 2;
-       $(this).height(doubleW);
+       $(this).height(doubleHeight);
+       
 
        $('.actions').show();
        $('.input-button').hide();
@@ -23,8 +21,18 @@ $(document).ready(function(){
         $(this).height(originalHeight);
         $(this).width(originalWidth);
         
+
+        if ($.trim($(this).val())) {
+            // textarea is  not empty
+            $(this).height(doubleHeight);
+            $('.actions').show();
+            $('.input-button').hide();
+            }
+        else{
+
         $('.actions').hide();
         $('.input-button').show();
+        }
         });
 
     var originalCharCount = parseInt($('.message-count').text());
@@ -51,10 +59,41 @@ $(document).ready(function(){
         }
         if(tweetLength > 10){
             $('.message-count').removeAttr('style');
-        }
-        
-       
+        } 
     });
+
+    //tweet btn
+    $( ".post-tweet" ).click(function() {
+    $('.tweets').prepend($( '<div class="tweet">' +
+        '<div class="profile">' +
+        '  <img class="img-tweet-profile" src="img/damenleeturks.jpg" />' +
+        '</div>' +
+        '<div class="message">' +
+        '  <div class="posted-by">' +
+        '    <span class="display-name">Jeff</span>' +
+        '    <span class="handle">@jeffguy</span>' +
+        '  </div>' +
+        `<div class="content"><p>${$('#composeInput').val()}</p></div>` +
+        '  <div class="tweet-actions">' +
+        '    <i class="far fa-comment"></i>' +
+        '   <i class="fas fa-retweet"></i>' +
+        '    <i class="far fa-heart"></i>' +
+        '    <i class="far fa-envelope"></i>' +
+        '  </div>' +
+        '</div>' +
+        '</div>'));
+    
+        $('#composeInput').val("");
+        $('#composeInput').height(originalHeight);
+        $('#composeInput').width(originalWidth);
+        $('.actions').hide();
+        $('.input-button').show();
+        
+    
+    });
+
     
   
   });
+
+

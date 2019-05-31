@@ -242,3 +242,9 @@ body.light-mode {
   border: 1px solid #4a6c84 !important;
   color: white !important;
 }
+
+.time {
+  font-size: 10px;
+  text-align: right;
+  color: gray;
+}

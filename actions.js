@@ -1,18 +1,15 @@
 $(document).ready(function(){
-    alert("Hello World!");
+    //alert("Hello World!");
     $('.actions').hide();
     
     var originalWidth = $('#composeInput').width();
     var originalHeight = $('#composeInput').height(); 
-    var doubleWidth = originalWidth * 2;
     var doubleHeight = originalHeight * 5;
-    //check if input box has val, then enable tweet button
+    
    
 
     $("#composeInput").focusin(function(){
        $(this).height(doubleHeight);
-       
-
        $('.actions').show();
        $('.input-button').hide();
         });
@@ -37,19 +34,19 @@ $(document).ready(function(){
 
     var originalCharCount = parseInt($('.message-count').text());
     $("#composeInput").keyup(function(){
-        console.log('changed');
+        //console.log('changed');
         if ($('#composeInput').val()[0] == "" || $('#composeInput').val()[0] == 'undefined' || !$.trim($(this).val()) ) {
             // textarea is empty or contains only white-space
-            console.log('empty');
+            //console.log('empty');
             $('.post-tweet').attr("disabled", true);
             }
         if ($.trim($(this).val())) {
             // textarea is  not empty
-            console.log('not empty');
+            //console.log('not empty');
             $('.post-tweet').attr("disabled", false);
             }
-        console.log('length is' + $(this).val().length);
-        console.log(originalCharCount - $(this).val().length);
+        //console.log('length is' + $(this).val().length);
+        //console.log(originalCharCount - $(this).val().length);
         
         let tweetLength = originalCharCount - $(this).val().length;
         $('.message-count').text(tweetLength);

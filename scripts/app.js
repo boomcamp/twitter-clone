@@ -12,7 +12,7 @@ tweetActions.style.display = 'none';
 
 composeTweet.addEventListener('focus' , focusTweetCompose);
 composeTweet.addEventListener('keyup' , tweetCompose);
-
+postBtn.disabled = true;
 
 // postBtn.addEventListener('mousedown' , addTweet);
 
@@ -66,6 +66,8 @@ function tweetCompose(){
 $(document).ready(function(){
 
     $('.post-tweet').on('mousedown', () => {
+          
+      
           var newTweet = $('<div class="tweet">'+
             '<div class="profile">'+
               '<img class="img-tweet-profile" src="img/damenleeturks.jpg" />'+

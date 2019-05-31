@@ -1,84 +1,94 @@
 
-var composeInput = document.querySelector('#composeInput');
-var actions = document.querySelector('.actions');
-var postBtn = document.querySelector('.post-tweet');
-var imgProfile = document.querySelector('.img-profile');
-
-actions.style.display = 'none';
 
 
+const tweetActions = document.querySelector("div[data-testid='tweet-actions']");
+const composeTweet = document.querySelector("textarea[data-testid='tweet-input']");
+const inputBtn = document.querySelector("div[data-testid='input-button']");
+const postBtn = document.querySelector('.post-tweet');
+const imgProfile = document.querySelector('.img-profile');
 
-composeInput.addEventListener('focus' , showComposer);
 
-composeInput.addEventListener('keyup' , tweetCompose);
+tweetActions.style.display = 'none';
+
+composeTweet.addEventListener('focus' , focusTweetCompose);
+composeTweet.addEventListener('keyup' , tweetCompose);
 
 
-var postedTweetsArr = [];
-function postedTweets(imgSrc , displayName , handle , tweet , date){
-    this.imgSrc = imgSrc;
-    this.displayName = displayName;
-    this.handle = handle;
-    this.tweet = tweet;
-    this.date = date;
+// postBtn.addEventListener('mousedown' , addTweet);
+
+
+
+composeTweet.addEventListener('blur' , normalState);
+
+function focusTweetCompose(){
+    tweetActions.style.display = 'flex';
+    composeTweet.classList.add('expanded');
+    inputBtn.style.display = 'none';
+}
+
+function normalState(){
+
+    composeTweet.classList.remove('expanded');
+    inputBtn.style.display = 'flex';
+    composeTweet.value = null;
+    tweetActions.style.display = 'none';
 }
 
 
 
-postBtn.addEventListener('click' , addTweet);
 
-
-
-
-
-function showComposer(event){
-    composeInput.style.height = '70px';
-    actions.style.display = 'flex';
-
-}
-
-function hideComposer(){
-    composeInput.style.height = '34px';
-    actions.style.display = 'none';
-}
-
-function tweetCompose(event){
-    
-    var composedLength = composeInput.value.length;
+function tweetCompose(){
+    var composedLength = composeTweet.value.length;
     var msgCount = document.querySelector('.message-count');
-    var maxLength = composeInput.maxLength;
+    var maxLength = composeTweet.maxLength;
+
     if( composedLength > 0){
         postBtn.disabled = false;
         let totalLength = maxLength - composedLength;
         msgCount.innerHTML = totalLength;
         if(composedLength > maxLength-10){
-            msgCount.classList.add('red');
+            msgCount.classList.add('danger');
         }
         else{
-            msgCount.classList.remove('red');
+            msgCount.classList.remove('danger');
         }
     }
     else{
         postBtn.disabled = true;
         msgCount.innerHTML = maxLength;
     }
-}
-
-function addTweet(){
-    let imgSrc = imgProfile.src;
-    let tweet = composeInput.value;
-    let date = new Date();
-    let newTweet = new postedTweets(imgSrc , 'Jeff' , '@jeffguy' , tweet , date);
-
-    postedTweetsArr.push(newTweet);
-
-    showTweets();
-}
-
-function showTweets(){
     
-    postedTweetsArr.forEach(element => {
-        console.log('asdas');
-    });
-
-
 }
+
+
+
+
+$(document).ready(function(){
+
+    $('.post-tweet').on('mousedown', () => {
+          var newTweet = $('<div class="tweet">'+
+            '<div class="profile">'+
+              '<img class="img-tweet-profile" src="img/damenleeturks.jpg" />'+
+            '</div>'+
+            '<div class="message">'+
+              '<div class="posted-by">'+
+                '<span class="display-name">Jeff</span>'+
+                '<span class="handle">@jeffguy</span>'+
+                '<span class="timeago"></span>'+
+              '</div>'+
+              '<div class="content">'+
+                '<p>'+$("#composeInput").val()+'</p>'+
+              '</div>'+
+              '<div class="tweet-actions">'+
+                '<i class="far fa-comment"></i>'+
+                '<i class="fas fa-retweet"></i>'+
+                '<i class="far fa-heart"></i>'+
+                '<i class="far fa-envelope"></i>'+
+              '</div>'+
+            '</div>'+
+          '</div>');
+          
+          $('.tweets').prepend(newTweet);
+      
+    });
+});

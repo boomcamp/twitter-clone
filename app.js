@@ -1,7 +1,11 @@
 $(document).ready(function() {
     $('.actions').hide();
 
-
+    function toHide() {
+        $('#composeInput').css('height', '34px');
+        $('.actions').hide();
+        $('.input-button').show();
+    }
     $('#composeInput').focusout(function() {
 
 
@@ -13,9 +17,7 @@ $(document).ready(function() {
             $('.actions').show();
             $('.input-button').hide();
         } else {
-            $('#composeInput').css('height', '34px');
-            $('.actions').hide();
-            $('.input-button').show();
+            toHide();
         }
 
     });
@@ -48,8 +50,36 @@ $(document).ready(function() {
         }
     });
 
+    function startTime(i) {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        //m = checkTime(m);
+        //s = checkTime(s);
+
+        var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+        var x;
+        if (i == 60) {
+            x = x++;
+
+        }
+        if (x != null) {
+            $('.timeShow').html(' ' + s);
+        } else {
+            return i + ' second(s) ago'
+        }
+
+    }
+
+
     $('.post-tweet').click(function() {
-        $('.tweets').append(
+        startTime();
+
+        $('.tweets').prepend(
             '<div class="tweet">' +
             '<div class="profile">' +
             '<img class="img-tweet-profile" src="img/damenleeturks.jpg">' +
@@ -57,7 +87,9 @@ $(document).ready(function() {
             '<div class="message">' +
             '<div class="posted-by">' +
             '<span class="display-name">Jeff</span>' +
-            '<span class="handle">@jeffguy</span>' +
+            '<span class="handle">@jeffguy' +
+            '<span class="timeShow"> </span>' +
+            '</span>' +
             '</div>' +
             '<div class="content">' +
             '<p>' +
@@ -70,7 +102,7 @@ $(document).ready(function() {
         );
 
         $('#composeInput').val('');
-
+        toHide();
     });
 
 

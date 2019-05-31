@@ -1,11 +1,24 @@
+:root {
+  --bg: white;
+  --fcolor: #000000;
+}
+
 html, body {
   font-family: sans-serif;
   background-color: black;
+  color: var(--fcolor);
 }
 
 main {
   width: 588px;
   margin: 0 auto;
+}
+
+.mode {
+  width: 20px;
+  height: 20px;
+  background: #222;
+  border-radius: 50%;
 }
 
 .danger {
@@ -25,7 +38,7 @@ main {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #E7F7FD;
+  background-color: var(--bg);
   padding: 8px;
 }
 
@@ -117,7 +130,7 @@ main {
 .tweets {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--bg);
 }
 
 .tweets .tweet {

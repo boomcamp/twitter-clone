@@ -8,10 +8,12 @@ let name;
     // functions
     function twitter(message){
         let obj = Object.create({
+            name: getName(),
+            mail: getEmail(),
             message,
             time: new Date()
         })
-        tweets.push(obj);
+        tweets.unshift(obj);
         
     }
     
@@ -27,6 +29,10 @@ let name;
         $('.post-tweet').attr('disabled','disabled');
     }
 
+    function hideInputButton(){
+        $('.input-button').css({'display':'block'});
+    }
+
     function getEmail(){
        
         return `@${name.replace(' ','')}`; 
@@ -34,7 +40,7 @@ let name;
 
     function getTime(key){
         let date = key.time;
-        console.log(new Date().getTime() - date.getTime());
+     
         return `${Math.floor((new Date().getTime() - date.getTime())/1000)} seconds`;
     }
 
@@ -67,8 +73,10 @@ let name;
 
     function refreshData(){
         let newHTML = "";
+        tweets = tweets.sort((a,b)=>{return a-b});
+       
         tweets.map(key=>{
-           console.log(key);
+           
 
 
              newHTML += ' <div class="tweet"> ' +
@@ -77,8 +85,8 @@ let name;
            '</div>'+
             '<div class="message">'+
             '<div class="posted-by">'+
-            '<span class="display-name">'+getName()+'</span'+
-               ' ><span class="handle">'+getEmail()+'</span>'+
+            '<span class="display-name">'+key.name+'</span'+
+               ' ><span class="handle">'+key.mail+'</span>'+
                ' <span class="timestamp">'+`${getTime(key)} ago`+'</span>'+
               '</div>'+
               '<div class="content">'+
@@ -116,7 +124,6 @@ let name;
         textCount-=$('#composeInput').val().length;
         $('.message-count').text(textCount);
         inputExpand();
-
         $('.input-button').css({'display':'none'});
         btnShow();
         textCount-=$('#composeInput').val().length > 0 ?  $('.post-tweet').removeAttr('disabled') :  $('.post-tweet').attr("disabled","disabled");
@@ -127,6 +134,7 @@ let name;
         if($(this).val().length > 0) return;
         else {
             inputDexpand();
+            $('.input-button').css({'display':'block'});
             btnHide();
         }
     })
@@ -138,9 +146,12 @@ let name;
        twitter(tweet);
        clearInput();
        btnDisable();
-       inputDexpand();
+       
        btnHide();
+       $('.input-button').css({'display':'block'});
+       inputDexpand();
        refreshData();
+       
     });
 
     
@@ -149,6 +160,17 @@ let name;
     function update(){
         
     }
+
+
+    $('.mode').on('click',function(){
+       let color = this.dataset.color;
+       let fcolor;
+        color === "#000000" ? fcolor = "#FFFFFF" : fcolor = "#000000";
+        $(this).css('background',fcolor);
+        $(document.documentElement).css('--bg',color);
+       $(document.documentElement).css('--fcolor',fcolor);
+        color === "#000000" ? $(this).attr("data-color","#FFFFFF") : $(this).attr("data-color","#000000");
+    })
 
     
 

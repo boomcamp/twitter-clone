@@ -49,7 +49,7 @@ let name;
     function inputExpand(){
         $('#composeInput').addClass(' expanded');
     }
-
+    // document.querySelector('composeInput').classList.add('expanded');
     function inputDexpand(){
         $('#composeInput').removeClass(' expanded');
     }
@@ -64,10 +64,6 @@ let name;
     function clearInput(){
         $('#composeInput').val('');
     }
-
-    // function hideInputButton(){
-    //     $('.post-tweet').css({'display':'none'});
-    // }
 
     function refreshData(){
         let newHTML = "";
@@ -111,21 +107,28 @@ let name;
    
 
     $('#composeInput').on('focus',function(){
-        inputExpand();
-        // hideInputButton();
-        btnShow();
+       
     })
 
-    $('#composeInput').on('input',function(){
+    
+    $('#composeInput').on('input focus',function(){
         let textCount = $('#composeInput').attr('maxlength');
         textCount-=$('#composeInput').val().length;
         $('.message-count').text(textCount);
+        inputExpand();
+
+        $('.input-button').css({'display':'none'});
+        btnShow();
         textCount-=$('#composeInput').val().length > 0 ?  $('.post-tweet').removeAttr('disabled') :  $('.post-tweet').attr("disabled","disabled");
        
     });
 
-    $('#composeInput').on('focusout',function(){
-        $(this).val().length > 0 ?   inputExpand() :   inputDexpand();
+    $('#composeInput').on('input blur',function(){
+        if($(this).val().length > 0) return;
+        else {
+            inputDexpand();
+            btnHide();
+        }
     })
 
     $('.post-tweet').on('click',function(){
@@ -136,6 +139,7 @@ let name;
        clearInput();
        btnDisable();
        inputDexpand();
+       btnHide();
        refreshData();
     });
 

@@ -83,7 +83,7 @@ Here are the requirements for this user interaction:
 
    > **Typing State**
    >
-   > ![typing into tweet input](readme-assets/tweet_length.gif)
+   > ![typing into tweet input](re  adme-assets/tweet_length.gif)
 
 4. When a user user clicks into the input, then clicks out of the input, without typing anything, the
    input should be collapsed to its zero state again.

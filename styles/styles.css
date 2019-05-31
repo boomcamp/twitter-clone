@@ -46,6 +46,12 @@ main {
 .compose .input-container textarea.expanded {
   height: 68px;
 }
+.dark{
+  background-color: #888;
+}
+.red{
+  color: red;
+}
 
 .compose .input-container textarea:focus {
   outline: none;
@@ -142,6 +148,10 @@ main {
 
 .tweet .posted-by span {
   margin-right: 8px;
+}
+.tweet .timeago{
+  float: right;
+  color: grey;
 }
 
 .tweet .tweet-actions i {

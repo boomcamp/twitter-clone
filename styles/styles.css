@@ -1,6 +1,5 @@
 html, body {
   font-family: sans-serif;
-  background-color: black;
 }
 
 main {
@@ -117,7 +116,6 @@ main {
 .tweets .tweet {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid lightgray;
   padding: 8px;
 }
 
@@ -148,3 +146,99 @@ main {
   margin-right: 32px;
 }
 
+.tweet-actions {
+  color: gray;
+}
+
+/* CUSTOM DARK OR LIGHT MODE*/
+
+.switch {
+  float: right;
+  text-align: right;
+  margin-left: 82%;
+  margin-top: 2px;
+}
+
+.switch-btn {
+  background-color: transparent;
+  border: none;
+  color: gray;
+}
+
+.switch-btn-d {
+  color: gray;
+}
+
+.switch-btn:active {
+  outline: none;
+  border: none;
+}
+
+.switch-btn:focus {
+  outline: 0;
+}
+
+body.dark-mode {dcdcdc
+  background-color: #dcdcdc;
+  color: #111;
+  a {
+    color: #111;
+  }
+  button {
+    background-color: #eee;
+    color: #111;
+  }
+}
+
+body.light-mode {
+  background-color: #221f25;
+  color: #111;
+  a {
+    color: #eee;
+  }
+  button {
+    background-color: #eee;
+    color: #eee;
+  }
+}
+
+.tweets-l {
+  border: 0.5px solid #e0e0e0 !important;
+}
+
+.tweets-d {
+  background-color: #202931 !important;
+  color: #e6e4e4 !important;
+}
+
+.tweet-l {
+  border-right: 0.5px solid #e0e0e0 !important;
+  border-left: 0.5px solid #e0e0e0 !important;
+  border-bottom: 0.5px solid #e0e0e0 !important;
+}
+
+.tweet-d {
+  border-right: 0.5px solid #484848 !important;
+  border-left: 0.5px solid #484848 !important;
+  border-bottom: 0.5px solid #484848 !important;
+}
+
+.content-d {
+  color: #d2cece !important;
+}
+
+.compose-d {
+  background-color: #202931;
+  border: 1px solid #404040;
+}
+
+.compose-switch-d {
+  background-color: #202931;
+  border: 1px solid #404040;
+}
+
+.textarea-d {
+  background-color: #10171e !important;
+  border: 1px solid #4a6c84 !important;
+  color: white !important;
+}

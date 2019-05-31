@@ -18,17 +18,28 @@
       title="no title"
       charset="utf-8"
     />
+    <link 
+      rel='stylesheet'
+      href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+      integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ'
+      crossorigin='anonymous'
+    />
   </head>
-  <body>
+  <body id="body" class="dark-mode">
     <main>
-      <div class="compose">
+      <div id="compose-switch" class="compose">
+        <div class="switch">
+        <button type="button" class="switch-btn" onclick="toggleDarkLight()" title="Toggle dark/light mode">Dark Mode</button><i class='bulb far fa-lightbulb'></i>
+        </div>
+      </div>
+      <div id="compose" class="compose">
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
           <textarea
             placeholder="What's happening?"
             name="tweetText"
             id="composeInput"
-            maxlength="280"
+            maxlength="269"
             data-testid="tweet-input"
           ></textarea>
           <div class="input-button" data-testid="input-button">
@@ -50,14 +61,14 @@
               </button>
             </div>
             <div class="post-actions">
-              <span class="message-count" data-testid="message-count">280</span>
+              <span id="message-count" class="message-count" data-testid="message-count">269</span>
               <button class="post-tweet" data-testid="post-tweet" disabled>Tweet</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="tweets" data-testid="tweets">
-        <div class="tweet">
+      <div id="tweets" class="tweets" data-testid="tweets">
+        <div class="tweet tweet-l">
           <div class="profile">
             <img class="img-tweet-profile" src="img/funwatercat.jpg" />
           </div>
@@ -79,6 +90,7 @@
         </div>
       </div>
     </main>
-    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="app/scripts/app.js"></script>
   </body>
 </html>

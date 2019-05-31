@@ -24,6 +24,7 @@ function textInput() {
 /*Blur TextArea*/
 
 function showtextInput() {
+    let maxinput = 269;
     if(textarea.value) return;
     action.style.display = 'none';
     inputbtn.style.display = '';
@@ -38,7 +39,12 @@ function showbtn() {
         tweetbtn.disabled = false;
     } else {
         tweetbtn.disabled = true;
-    } tweetcount.content = maxvalue - textarea.length {
-        
+    } 
+    
+    tweetcount.textContent = maxinput - textarea.value.length;
+       if(tweetcount.textContent <= 10) {
+            tweetcount.style.color = 'red'
+        } else {
+            tweetcount.style.color = '#13B5F0'
+        }
     }
-}

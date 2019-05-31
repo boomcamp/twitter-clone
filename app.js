@@ -1,11 +1,17 @@
-const textHeight = 34;
+let boolYah = false;
 const messBox = parseInt($('.message-count').text());
+function tweet(timeLog,timeNow) {
+    this.timeLog = timeLog,
+    this.timeNow = timeNow
+}
+
+let tweets = [];
+
 $(document).ready(function() {
     $('.actions').css("display","none");
 
     
     $('#composeInput').focus(function() {
-        let yow = (parseInt(textHeight)*2);
         var tbox = $('#composeInput').val();
         $('.actions').css("display","flex");
         $('.input-button').css("display","none");
@@ -14,13 +20,11 @@ $(document).ready(function() {
         } else {
             $('.post-tweet').attr("disabled", true);
             $('#composeInput').addClass("expanded");
-            console.log(yow);
         } 
     });
     
     $('#composeInput').blur(function() {
         var tbox = $('#composeInput').val();
-        let yow = (parseInt(textHeight));
     
         if(tbox != '') {
             $('.actions').css("display","flex");
@@ -55,15 +59,16 @@ $(document).ready(function() {
     });
 
     $('.post-tweet').click(function() {
-        let yow = (parseInt(textHeight));
-        
+        let now = new Date();
+        now.setSeconds(now.getSeconds());
+        console.log(now);
         $('.tweets').prepend(`<div class="tweet">`+
         `<div class="profile">`+
         `<img class="img-tweet-profile" src="https://source.unsplash.com/random/800x600" />`+
         `</div>`+
         `<div class="message">`+
         `<div class="posted-by">`+
-        `<span class="display-name">Jeff</span><span class="handle">@jeffguy</span>`+
+        `<span class="display-name">Jeff</span><span class="time"></span></span><span class="handle">@jeffguy</span><span class="handle hand" id="hand"></span>`+
         `</div>`+
         `<div class="content"><p>${$('#composeInput').val()}</p></div>`+
         `<div class="tweet-actions"><i class="far fa-comment"></i><i class="fas fa-retweet"></i><i class="far fa-heart"></i><i class="far fa-envelope"></i></div>`+
@@ -78,4 +83,20 @@ $(document).ready(function() {
         $('.input-button').css("display","block");
         $('.post-tweet').attr("disabled", true);
     });
+
+    $('.switch button').click(function() {
+        console.log(boolYah);
+        if(boolYah == false) {
+            $('main').addClass('nightmode-on');
+            $('.switch button').text('Nightmode On');
+            boolYah = true;
+            event.preventDefault();
+        } else if(boolYah == true) {
+            $('main').removeClass('nightmode-on');
+            $('.switch button').text('Nightmode Off');
+            boolYah = false;
+            event.preventDefault();
+        }
+    });
+
 });

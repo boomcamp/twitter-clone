@@ -8,10 +8,90 @@ main {
   margin: 0 auto;
 }
 
-.nightMode {}
+.nightmode {
+  position: relative;
+  top: 30px;
+  text-align: center;
+  width: 100%;
+  min-height: 10px;
+  height: auto;
+}
+
+.nightmode h2 {
+  color: white;
+}
+
+.switch button {
+  border: 4px solid white;
+  border-radius: 4px;
+  background-color: #13B5F0;
+  height: 100px;
+  width: 100px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.switch button:hover {
+  transition: 0.3s;
+  background-color: #4bcfff;
+  box-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.time {
+  display: none;
+}
+
+:root {
+  --background-main: #141a25;
+  --chrome-background: #43464A; 
+  --paper-background: #2E3136;
+  --primary-text: #f4f5f7;
+  --secondary-text: #68737f ;
+  --warning: #ffcc33;
+  --danger: #FF6E6E;
+  --icon: #386c95;
+}
 
 .danger {
   color: red;
+}
+
+.nightmode-on .action-buttons button i {
+  color: var(--primary-text);
+}
+
+.nightmode-on {
+  border-color: #000 !important;
+}
+
+.nightmode-on .danger {
+  color: var(--danger);
+}
+
+.nightmode-on .compose {
+  background-color: var(--background-main);
+}
+
+.nightmode-on .handle {
+  color: var(--secondary-text);
+}
+
+.nightmode-on textarea {
+  color: var(--primary-text);
+  background-color: var(--paper-background);
+}
+
+.nightmode-on span.display-name {
+  color: var(--primary-text);
+}
+
+.nightmode-on i {
+  color: var(--primary-text);
+}
+
+
+.nightmode-on p {
+  color: var(--primary-text);
 }
 
 .img-profile {
@@ -113,7 +193,11 @@ main {
 }
 
 .tweets {
-  background-color: white;
+  background-color: #fff;
+}
+
+.nightmode-on .tweets {
+  background-color: var(--background-main);
 }
 
 .tweets .tweet {

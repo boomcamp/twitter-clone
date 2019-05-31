@@ -17,6 +17,7 @@ $(document).ready(() => {
         }else{
             $('.actions').hide();
             $('textarea').removeClass('expanded');
+            $('.input-button').show();
         }
         
     });
@@ -38,41 +39,28 @@ $(document).ready(() => {
         }
     });
 
-    
-
     $('.post-tweet').on('click', event => {
         $('.input-button').show();
         var post = $(event.currentTarget).val();
+        if(post.length == 0){
+            $('.message-count').html(280);
+        }
+
+        $('textarea').removeClass('expanded');
+         $('.actions').hide();
+    })
+
+    
+    $('.post-tweet').on('click', () => {
+        
+        var child = $('.tweet:first').clone();
+        child.prependTo('.tweets');
+        $('.img-tweet-profile:first').attr('src','img/damenleeturks.jpg');
+        $('.display-name:first').html('Jeff');
+        $('.handle:first').html('@jeffguy');
+        $('p:first').html($('#composeInput').val());
+
         document.getElementById('composeInput').value = '';
-
-        $('.tweet').innerHTML = `
-        <div class="tweet">
-        <div class="profile">
-          <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
-        </div>
-        <div class="message">
-          <div class="posted-by">
-            <span class="display-name">Jeff</span
-            ><span class="handle">@jeffguy</span>
-          </div>
-          <div class="content">
-            <p>${post}</p>
-          </div>
-          <div class="tweet-actions">
-            <i class="far fa-comment"></i>
-            <i class="fas fa-retweet"></i>
-            <i class="far fa-heart"></i>
-            <i class="far fa-envelope"></i>
-          </div>
-        </div>
-      </div>
-        `;
-
-        $('.tweets').clone().$('.tweet').innerHTML.prependTo('.tweets');
-
   });
-
-
-
-
+    
 });

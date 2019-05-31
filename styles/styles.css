@@ -146,3 +146,7 @@ main {
 .tweet .tweet-actions i {
   margin-right: 32px;
 }
+.date{
+  color:#888;
+  font-size:11px;
+}

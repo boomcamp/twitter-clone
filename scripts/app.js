@@ -76,10 +76,12 @@ $(document).ready(function(){
               '<div class="posted-by">'+
                 '<span class="display-name">Jeff</span>'+
                 '<span class="handle">@jeffguy</span>'+
-                '<span class="timeago"></span>'+
+
               '</div>'+
               '<div class="content">'+
-                '<p>'+$("#composeInput").val()+'</p>'+
+                '<p>'+$("#composeInput").val()+
+                '<Br><small class="date"></small>'+
+                '</p>'+
               '</div>'+
               '<div class="tweet-actions">'+
                 '<i class="far fa-comment"></i>'+
@@ -91,6 +93,6 @@ $(document).ready(function(){
           '</div>');
           
           $('.tweets').prepend(newTweet);
-      
+          $('.date').html(jQuery.timeago(new Date()));   
     });
 });

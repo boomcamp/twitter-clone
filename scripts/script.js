@@ -4,6 +4,7 @@ let names  = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "las
 $(document).ready(function(){
 let activeIndex = 0;
 let activeUrl = "img/damenleeturks.jpg";
+let uploadImage = "";
 let name;
 
     btnHide();
@@ -200,8 +201,9 @@ let name;
     })
 
 
-    $('button #image').on('click',function(){
-        console.log("Invoked");
+    $('button[name="image"]').on('click',function(){
+        $('input[type="file"]')[0].click();
+        console.log($('.file').val());
     })
 
     $('.img-profile').on('click',function(){

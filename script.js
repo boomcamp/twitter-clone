@@ -47,6 +47,8 @@ function submitPost(e){
     inActBtn[0].style.display = 'none';
     let newTwit = twit[0];
     let strHTML = newTwit.outerHTML
+        .replace(/( src="img\/)[^\.]+/gm,`$1alagoon`)
+        .replace(/(class="display-name">)[^<]+/gm,`$1Micko`)
         .replace(/(<p>).+(<\/p>)/gm,`$1${composeInput.value}$2`);
     twits[0].insertAdjacentHTML('afterbegin',strHTML);
     composeInput.value = "";

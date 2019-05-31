@@ -40,8 +40,20 @@ let name;
 
     function getTime(key){
         let date = key.time;
+        let time;
+        let suffix = "seconds";
+        time = Math.floor((new Date().getTime() - date.getTime())/1000);
+        if(time>60){
+            time = Math.floor(time/60);
+            suffix = "min";
+
+             if(time > 60){
+                 time =  Math.floor(time/60);
+                 suffix = "hour";
+             }
+        }
      
-        return `${Math.floor((new Date().getTime() - date.getTime())/1000)} seconds`;
+        return `${time} ${suffix}`;
     }
 
     function btnHide(){
@@ -70,6 +82,8 @@ let name;
     function clearInput(){
         $('#composeInput').val('');
     }
+
+    
 
     function refreshData(){
         let newHTML = "";
@@ -155,7 +169,7 @@ let name;
     });
 
     
-    setInterval(update,1000);
+    setInterval(update,10000);
 
     function update(){
         
@@ -166,10 +180,26 @@ let name;
        let color = this.dataset.color;
        let fcolor;
         color === "#000000" ? fcolor = "#FFFFFF" : fcolor = "#000000";
+        let f2color;
+        if(color==="#000000"){
+            f2color = "#000000";
+            $(this).text("Dark");
+        }
+        else {
+            f2color = "#FFFFFF";
+            $(this).text("Light");
+        }
         $(this).css('background',fcolor);
         $(document.documentElement).css('--bg',color);
        $(document.documentElement).css('--fcolor',fcolor);
+       $(document.documentElement).css('--cfcolor',f2color);
         color === "#000000" ? $(this).attr("data-color","#FFFFFF") : $(this).attr("data-color","#000000");
+    })
+
+
+    $('#image').on('click',function(){
+        $('button[type="file"]').trigger('click');
+        console.log("Invoked");
     })
 
     

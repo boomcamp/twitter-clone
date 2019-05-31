@@ -1,6 +1,7 @@
 :root {
   --bg: white;
   --fcolor: #000000;
+  --cfcolor: #000000;
 }
 
 html, body {
@@ -19,6 +20,12 @@ main {
   height: 20px;
   background: #222;
   border-radius: 50%;
+  color: var(--cfcolor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: bolder;
 }
 
 .danger {

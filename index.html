@@ -4,20 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Twitter</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="styles/styles.css"
-      type="text/css"
-      media="screen"
-      title="no title"
-      charset="utf-8"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="styles/styles.css"  type="text/css" media="screen"  title="no title" charset="utf-8"/>
   </head>
   <body>
     <main>
@@ -28,7 +16,7 @@
             placeholder="What's happening?"
             name="tweetText"
             id="composeInput"
-            maxlength="280"
+            maxlength="269"
             data-testid="tweet-input"
           ></textarea>
           <div class="input-button" data-testid="input-button">
@@ -36,7 +24,7 @@
           </div>
           <div class="actions" data-testid="tweet-actions">
             <div class="action-buttons">
-              <button class="icon-button">
+              <button type="file" class="icon-button">
                 <i class="fas fa-image"></i>
               </button>
               <button class="icon-button">
@@ -50,7 +38,7 @@
               </button>
             </div>
             <div class="post-actions">
-              <span class="message-count" data-testid="message-count">280</span>
+              <span class="message-count" data-testid="message-count">269</span>
               <button class="post-tweet" data-testid="post-tweet" disabled>Tweet</button>
             </div>
           </div>
@@ -80,5 +68,6 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>

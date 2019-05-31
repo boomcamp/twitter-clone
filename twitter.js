@@ -31,6 +31,11 @@ normalBtn.style.display = "none";
 
 //toggles if input textarea is focus
 function toggleFocus() {
+    if (inputText.value != "") {
+        tweetBtn.disabled = false;
+    } else {
+        tweetBtn.disabled = true;
+    }
     actionDiv.style.display = "";
     inputBtn.style.display = "none";
     inputText.classList.add("expanded");
@@ -45,12 +50,12 @@ function toggleBlur() {
 }
 //toggles if typing detected
 function toggleBtn() {
-    let maxInput = 269;
     if (inputText.value != "") {
         tweetBtn.disabled = false;
     } else {
         tweetBtn.disabled = true;
     }
+    let maxInput = 269;
     tweetCounter.textContent = maxInput - inputText.value.length;
     if (tweetCounter.textContent <= 10) {
         tweetCounter.style.color = "red";
@@ -106,10 +111,12 @@ function submitBtn() {
 }
 //toggle Dark Mode
 function BlackMode(){
-    tweetContainer.style.background = "black";
-    composeContainer.style.background = "black";
-    composeContainer.style.border = "1px solid #E7F7FD";
-    tweetContainer.style.border = "1px solid";
+    inputText.style.background = "rgb(60, 60, 60)";
+    inputText.style.border = "1px solid rgb(10, 111, 149)";
+    tweetContainer.style.background = "rgb(60, 60, 60)";
+    composeContainer.style.background = "rgb(5, 45, 60)";
+    composeContainer.style.border = "1px solid rgb(10, 111, 149)";
+    tweetContainer.style.border = "1px solid rgb(10, 111, 149)";
     tweetContainer.style.color= "white";
     BlackBtn.style.display = 'none';
     normalBtn.style.display = '';
@@ -118,9 +125,12 @@ function BlackMode(){
 }
 //toggle Normal Mode
 function normaMode(){
+    inputText.style.background = "white";
+    inputText.style.border = "none";
     tweetContainer.style.background = "white";
     composeContainer.style.background = "#E7F7FD";
-    tweetContainer.style.border = "1px solid white";
+    composeContainer.style.border = "none";
+    tweetContainer.style.border = "none";
     tweetContainer.style.color= "black";
     BlackBtn.style.display = '';
     normalBtn.style.display = 'none';

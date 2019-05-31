@@ -2,12 +2,15 @@
 let tweets = [];
 let names  = ["ninja", "chair", "pancake", "statue", "unicorn", "rainbows", "laser", "senor", "bunny", "captain", "nibblets", "cupcake", "carrot", "gnomes", "glitter", "potato", "salad", "toejam", "curtains", "beets", "toilet", "exorcism", "stick figures", "mermaid eggs", "sea barnacles", "dragons", "jellybeans", "snakes", "dolls", "bushes", "cookies", "apples", "ice cream", "ukulele", "kazoo", "banjo", "opera singer", "circus", "trampoline", "carousel", "carnival", "locomotive", "hot air balloon", "praying mantis", "animator", "artisan", "artist", "colorist", "inker", "coppersmith", "director", "designer", "flatter", "stylist", "leadman", "limner", "make-up artist", "model", "musician", "penciller", "producer", "scenographer", "set decorator", "silversmith", "teacher", "auto mechanic", "beader", "bobbin boy", "clerk of the chapel", "filling station attendant", "foreman", "maintenance engineering", "mechanic", "miller", "moldmaker", "panel beater", "patternmaker", "plant operator", "plumber", "sawfiler", "shop foreman", "soaper", "stationary engineer", "wheelwright", "woodworkers"];
 $(document).ready(function(){
+let activeIndex = 0;
+let activeUrl = "img/damenleeturks.jpg";
 let name;
 
     btnHide();
     // functions
     function twitter(message){
         let obj = Object.create({
+            avatar : activeUrl,
             name: getName(),
             mail: getEmail(),
             message,
@@ -95,7 +98,7 @@ let name;
 
              newHTML += ' <div class="tweet"> ' +
            ' <div class="profile"> ' +
-           ' <img class="img-tweet-profile" src="img/funwatercat.jpg" />'+
+           ' <img class="img-tweet-profile" src="'+key.avatar+'" />'+
            '</div>'+
             '<div class="message">'+
             '<div class="posted-by">'+
@@ -197,9 +200,25 @@ let name;
     })
 
 
-    $('#image').on('click',function(){
-        $('button[type="file"]').trigger('click');
+    $('button #image').on('click',function(){
         console.log("Invoked");
+    })
+
+    $('.img-profile').on('click',function(){
+        
+        let srcMain = "img";
+        let suffix = "jpg";
+        // `${srcMain}/${imgArrays[activeIndex]}.jpg`
+        let imgArrays = ["img/alagoon.jpg","img/damenleeturks.jpg","img/funwatercat.jpg","img/jennyshen.jpg","img/vklimenko.jpg"];
+        $('.img-profile').attr('src',`${imgArrays[activeIndex]}`);
+        activeUrl = imgArrays[activeIndex];
+       if(activeIndex===imgArrays.length-1){
+        activeIndex=0;
+       }
+       else {
+           activeIndex++;
+       }
+        
     })
 
     

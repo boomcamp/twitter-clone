@@ -63,6 +63,11 @@ main {
   resize: none;
 }
 
+.file {
+  display: none;
+  visibility: hidden;
+}
+
 .compose .input-container textarea.expanded {
   height: 68px;
 }

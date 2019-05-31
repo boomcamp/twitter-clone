@@ -49,7 +49,9 @@ $(document).ready(function() {
         </div>
         <div class="message">
           <div class="posted-by">
-            <span class="display-name">Jeff</span><span class="handle">@jeffguy</span>
+            <span class="display-name">Jeff</span
+            ><span class="handle">@jeffguy</span
+            ><span class="handle">&bull; just now</span>
           </div>
           <div class="content">
             <p>${$('#composeInput').val()}</p>

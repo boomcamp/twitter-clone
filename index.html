@@ -22,6 +22,7 @@
   <body>
     <main>
       <div class="compose">
+          <a class="night"> 🌙 </a>
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
           <textarea
@@ -50,11 +51,14 @@
               </button>
             </div>
             <div class="post-actions">
-              <span class="message-count" data-testid="message-count">280</span>
+              <span class="count" data-testid="count" id="count">280</span>
               <button class="post-tweet" data-testid="post-tweet" disabled>Tweet</button>
             </div>
           </div>
         </div>
+        
+         
+        
       </div>
       <div class="tweets" data-testid="tweets">
         <div class="tweet">
@@ -80,5 +84,6 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

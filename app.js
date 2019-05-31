@@ -49,24 +49,25 @@ $(document).ready(function() {
     });
 
     $('.post-tweet').click(function() {
-        $('.tweets').append(`
-        <div class="tweet">
-            <div class="profile">
-                <img class="img-tweet-profile" src="img/damenleeturks.jpg">
-            </div>
-            <div class="message">
-                <div class="posted-by">
-                    <span class="display-name">Jeff</span>
-                    <span class="handle">@jeffguy</span>
-                </div>
-                <div class="content">
-                    <p></p>
-                </div>
-                <div class="tweet-actions"></div>
-            </div>
-        </div>
-      `);
-
+        $('.tweets').append(
+            '<div class="tweet">' +
+            '<div class="profile">' +
+            '<img class="img-tweet-profile" src="img/damenleeturks.jpg">' +
+            '</div>' +
+            '<div class="message">' +
+            '<div class="posted-by">' +
+            '<span class="display-name">Jeff</span>' +
+            '<span class="handle">@jeffguy</span>' +
+            '</div>' +
+            '<div class="content">' +
+            '<p>' +
+            $('#composeInput').val() +
+            '</p>' +
+            '</div>' +
+            '<div class="tweet-actions"></div>' +
+            '</div>' +
+            '</div>'
+        );
 
         $('#composeInput').val('');
 

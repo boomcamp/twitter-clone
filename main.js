@@ -1,11 +1,9 @@
 $( document ).ready(function() {
     
-    $( ".action-buttons" ).hide();
-    $( ".post-actions" ).hide();
+    $( ".actions" ).hide();
 
     $( "#composeInput" ).click(function() {
-        $('.action-buttons').show();
-        $('.post-actions').show();
+        $('.actions').show();
     });
    
     $("textarea").keyup(function() {

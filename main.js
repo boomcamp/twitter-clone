@@ -61,6 +61,17 @@ $(document).ready(() => {
         $('p:first').html($('#composeInput').val());
 
         document.getElementById('composeInput').value = '';
-  });
+    });
+    
+    $('.toggle-btn').on('click', () => {
+        $('.toggle-btn').hide();
+        $('.tweets').css('background-color', '#202020');
+        $('.display-name').css('color','white');
+        $('.content').css('color', 'white');
+        $('.compose').css('background-color', '#202020');
+        $('textarea').css('background-color', '#202020');
+        $('textarea').css('color', 'white');
+    });
+   
     
 });

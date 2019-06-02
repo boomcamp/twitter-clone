@@ -82,7 +82,7 @@ $(document).ready(() => {
         $('.tweets').css('background-color', 'white');
         $('.display-name').css('color','black');
         $('.content').css('color', 'black');
-        $('.compose').css('background-color', 'white');
+        $('.compose').css('background-color', '#E7F7FD');
         $('textarea').css('background-color', 'white');
         $('textarea').css('color', 'black');
     });

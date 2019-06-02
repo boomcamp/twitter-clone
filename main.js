@@ -65,12 +65,26 @@ $(document).ready(() => {
     
     $('.toggle-btn').on('click', () => {
         $('.toggle-btn').hide();
+        $('.toggle').show();
+        $('.toggle').css('display', 'inline-block');
         $('.tweets').css('background-color', '#202020');
         $('.display-name').css('color','white');
         $('.content').css('color', 'white');
         $('.compose').css('background-color', '#202020');
         $('textarea').css('background-color', '#202020');
         $('textarea').css('color', 'white');
+    });
+
+    $('.toggle').on('click', () => {
+        $('.toggle').hide();
+        $('.toggle-btn').show();
+        $('.toggle').css('display', 'none');
+        $('.tweets').css('background-color', 'white');
+        $('.display-name').css('color','black');
+        $('.content').css('color', 'black');
+        $('.compose').css('background-color', 'white');
+        $('textarea').css('background-color', 'white');
+        $('textarea').css('color', 'black');
     });
    
     

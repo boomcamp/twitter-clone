@@ -1,6 +1,26 @@
-html, body {
+html[data-theme='light'] {
   font-family: sans-serif;
   background-color: black;
+
+    --compose-bg: #E7F7FD;
+    --tweets-bg: white;
+
+    --bg-panel: #EBEBEB;
+    --color-headings: #0077FF;
+    --color-text: #333333;
+}
+
+html[data-theme='dark'] {
+  font-family: sans-serif;
+  background-color: black;
+
+  --compose-bg: #183343;
+  --tweets-bg: #1B2836;
+  --color: white;
+
+    --bg-panel: #434343;
+    --color-headings: #3694FF;
+    --color-text: #B5B5B5;
 }
 
 main {
@@ -25,7 +45,7 @@ main {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #E7F7FD;
+  background-color: var(--compose-bg);
   padding: 8px;
 }
 
@@ -111,9 +131,15 @@ main {
 }
 
 .tweets {
-  background-color: white;
+  background-color: var(--tweets-bg);
 }
 
+.posted-by{
+  color: var(--color);
+}
+.content {
+  color: var(--color);
+}
 .tweets .tweet {
   display: flex;
   flex-direction: row;
@@ -148,3 +174,53 @@ main {
   margin-right: 32px;
 }
 
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	background: grey;
+	float: right;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + label {
+	background: var(--color-headings);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 45px;
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}

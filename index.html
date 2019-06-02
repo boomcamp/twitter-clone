@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -19,9 +19,15 @@
       charset="utf-8"
     />
   </head>
-  <body>
+  <body >
     <main>
+      
       <div class="compose">
+
+          <div class="toggle-container">
+              <input type="checkbox" id="switch" name="theme" /><label for="switch">Toggle</label>
+          </div>
+
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
           <textarea
@@ -65,6 +71,8 @@
             <div class="posted-by">
               <span class="display-name">Michael</span
               ><span class="handle">@sometwitterguy</span>
+              
+              <span class="timeago" id="timeago" ></span>
             </div>
             <div class="content">
               <p>Today is an amazing day!</p>
@@ -80,5 +88,113 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+
+    <script>
+       var checkbox = document.querySelector('input[name=theme]');
+
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'dark')
+            } else {
+                trans()
+                document.documentElement.setAttribute('data-theme', 'light')
+            }
+        })
+
+        let trans = () => {
+            document.documentElement.classList.add('transition');
+            window.setTimeout(() => {
+                document.documentElement.classList.remove('transition')
+            }, 1000)
+        }
+
+        
+        $(document).ready(() => {
+
+          $('.actions').hide();
+          $('.input-button').show();
+
+          $('#composeInput').on('focus', ()=> {
+            $('.input-button').hide();
+            $('.actions').show();
+            $('#composeInput').addClass("expanded");
+
+            
+         }).keyup(function(a){});
+            
+         $('textarea').on('input',function(a) {
+
+          if ($(this).val() == '') {
+              $('.post-tweet').prop('disabled', true);
+          } else {
+              $('.post-tweet').prop('disabled', false);
+          }
+            });
+          
+          $('#composeInput').blur(function() {
+            if ($(this).val().length === 0) {
+             $('.actions').hide();
+            $('#composeInput').removeClass("expanded");
+            }
+          });
+          
+          
+         $('textarea').on('input', function(a){
+
+          const counter = $('.message-count');
+
+           var currentLength = $(this).val().length;
+
+           var maxlength = $(this).attr('maxlength');
+
+           if(currentLength > 0) 
+           {
+               if(currentLength >= maxlength-10)
+               { 
+                 counter.addClass('danger');
+               } else { 
+                 counter.removeClass('danger'); 
+               }
+           }
+            counter.html(maxlength - $(this).val().length);
+            });
+
+            $('.post-tweet').click(function() {
+
+              var tweet = $('<div class="tweet">'
+              +'<div class="profile">'
+                +'<img class="img-tweet-profile" src="img/damenleeturks.jpg" />'
+              +'</div>'
+              +'<div class="message">'
+                +'<div class="posted-by">'
+                  +'<span class="display-name">Jeff</span'
+                  +'><span class="handle">@Jeffguy</span>'
+                  +'<span class="timeago" id="timeago" ></span>'
+                +'</div>'
+                +'<div class="content">'
+                  +'<p>'+$('#composeInput').val()+'</p>'
+                +'</div>'
+                +'<div class="tweet-actions">'
+                  +'<i class="far fa-comment"></i>'
+                  +'<i class="fas fa-retweet"></i>'
+                  +'<i class="far fa-heart"></i>'
+                  +'<i class="far fa-envelope"></i>'
+                +'</div>'
+              +'</div>'
+            +'</div>');
+              $('.tweets').prepend(tweet);
+              $('#composeInput').removeClass('expanded');
+              $('.actions').hide();
+              $('#composeInput').val('');
+
+              $('.actions').hide();
+              $('.input-button').show();
+            })
+              
+      
+
+        });
+    </script>
   </body>
 </html>

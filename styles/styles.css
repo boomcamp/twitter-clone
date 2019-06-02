@@ -158,3 +158,15 @@ main {
   font-size: 16px;
   margin-bottom: 10px;
 }
+
+.toggle {
+  height: 32px;
+  width: 140px;
+  border: none;
+  background-color: #13B5F0;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: none;
+}

@@ -19,6 +19,7 @@ let name;
             time: new Date()
         })
         tweets.unshift(obj);
+        uploadImage = "";
         
     }
     
@@ -95,8 +96,9 @@ let name;
         tweets = tweets.sort((a,b)=>{return a-b});
        
         tweets.map(key=>{
-           
-
+            let isImg;
+            key.uploadImage ? isImg = '<img class="imgUpload" src="'+key.uploadImage+'"/>':isImg='<span />';
+            
 
              newHTML += ' <div class="tweet"> ' +
            ' <div class="profile"> ' +
@@ -110,8 +112,8 @@ let name;
               '</div>'+
               '<div class="content">'+
                 '<p>'+key.message+'</p>'+
-             ' </div>'+
-             '<img class="imgUpload" src="'+key.uploadImage+'"/>'+
+             ' </div>'+  
+             ''+isImg+
               
               '<div class="tweet-actions">'+
                 '<i class="far fa-comment"></i>'+

@@ -80,5 +80,59 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script>
+      $(document).ready(function(){
+       $('.actions').css("display", "none");
+        
+        $("textarea").focus(function(){
+         $(".actions").show();
+          $(".input-button").hide();
+          //$(this).on("keyup", button)
+          $(this).addClass('expanded');
+        }); 
+       
+        $("textarea").blur(function(){
+         $(".input-button").show();
+        $(".actions").hide();
+        $(this).removeClass('expanded');
+        });
+        $("textarea").on('keypress input',function(){
+        if($(this).val() != ''){
+          $('.post-tweet').removeAttr('disabled');
+        }
+        else
+        {
+          $('.post-tweet').attr('disabled', true);
+        }
+        $(this).attr('maxlength', 280);
+            var msgCount = (280 - $(this).val().length).toString();
+            $('.message-count').text(msgCount);
+            if(msgCount<=10){
+              $('.message-count').css("color", "red");
+            }
+            else{
+              $('.message-count').css("color", "#13B5F0");
+            }
+        }); 
+       
+      });
+      </script>
   </body>
 </html>
+<!-- $(".post-tweet").click(function() {
+  var tweet = $("textarea").val();
+
+  $(".tweets").prepend(
+      `<div class="tweet"><div class="profile"><img class="img-tweet-profile" src="img/damenleeturks.jpg" /></div><div class="message"><div class="posted-by"><span class="display-name">Jeff</span><span class="handle">@jeffguy</span></div><div class="content"><p> 
+          ${tweet} 
+      </p></div><div class="tweet-actions"><i class="far fa-comment"></i><i class="fas fa-retweet"></i><i class="far fa-heart"></i><i class="far fa-envelope"></i></div></div></div>`
+  );
+
+  $(".actions").hide();
+  $(".input-container textarea").removeClass("expanded");
+  $("textarea").val("");
+  $(".input-button").show();
+  if ($("textarea").val() == "") {
+  $(".post-tweet").attr("disabled", true);
+  }
+}); -->

@@ -80,5 +80,75 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        $(".actions").hide();
+        $("#composeInput").focusout(function(){
+          if(this.value.length == 0){
+            $(".actions").hide();
+            $(".fa-image").show();
+            // $("#composeInput").removeClass("expand");
+            $("#composeInput").css('height', '34px');
+          }
+        })
+    
+        $("#composeInput").focusin(function(){
+          $(".actions").show();
+          $(".fa-image").hide();
+          // $("#composeInput").addClass("expand");
+          $("#composeInput").css('height', '68px');
+        })
+
+        $("#composeInput").keyup(function(){
+          var max = 280;
+          max -= this.value.length;
+          $('.message-count').text(max)
+          
+          if(max <= 10)
+            $('.message-count').css('color', 'red ');
+            // $('.message-count').addClass('danger');
+          else
+            // $('.message-count').removeClass('danger');
+            $('.message-count').css('color', '#13B5F0');
+
+          if(this.value == "" || max == 0)   
+            $(".post-tweet").prop("disabled", true);
+          else
+            $(".post-tweet").prop("disabled", false);
+        })
+
+        $(".post-tweet").click(function(){   
+          $(".tweets").prepend(`
+          <div class="tweet">
+            <div class="profile">
+              <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
+            </div>
+            
+            <div class="message">
+              <div class="posted-by">
+                <span class="display-name">Jeff</span>
+                <span class="handle">@jeffguy</span>
+              </div>
+              
+              <div class="content">
+                <p>${$("#composeInput").val()}</p>
+              </div>
+              
+              <div class="tweet-actions">
+                <i class="far fa-comment"></i>
+                <i class="fas fa-retweet"></i>
+                <i class="far fa-heart"></i>
+                <i class="far fa-envelope"></i>
+              </div>
+            </div>
+          </div>`);
+          
+        });
+
+      });
+    </script>
+  
+  
   </body>
 </html>

@@ -130,7 +130,7 @@ main {
   font-weight: bold;
 }
 
-.handle {
+.handle, .timestamp {
   color: lightgray;
 }
 

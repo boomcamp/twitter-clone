@@ -90,11 +90,12 @@
     
     <script>
       $(document).ready(function(){
-        let color="",tmppath='';
+        let color="", tmppath='',postedTime=0;
         $(".actions").hide();
+
         // var timeDiff = new Date().getHours() + new Date().getMinutes()
-        // if(timeDiff - postedTime == 0){
-        //   $('.tweet-actions').prepend(`<i style="float: right; color: gray;">a moment ago</i>`);
+        // if(timeDiff - postedTime == 60){
+        //   $('.time').text("a minute ago");
         // }
 
         $("#composeInput").blur(function(){
@@ -135,7 +136,7 @@
         });
 
         $(".post-tweet").click(function(){
-          // const postedTime = date.getHours()+date.getMinutes()
+          var postedTime  = new Date().getHours() + new Date().getMinutes()
 
           $(".tweets").prepend(`
           <div class="tweet ${color}">
@@ -147,6 +148,7 @@
               <div class="posted-by">
                 <span class="display-name">Jeff</span>
                 <span class="handle">@jeffguy</span>
+                <span class="time">a seconds ago</span>
               </div>
               
               <div class="content">
@@ -164,10 +166,6 @@
               </div>
             </div>
           </div>`);
-          // <img src="" id="image" width="300" height="250"/>
-          // $('#image').attr('src',URL.createObjectURL($('#image-file').files[0]));
-
-          // console.log(tmppath)
           
           if($("#file-image").val()){
             $("#image").css('display', 'block');

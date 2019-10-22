@@ -167,6 +167,15 @@ main {
   margin: 0 0 10px 0;
 }
 
+.file-image{
+  color: grey;
+}
+
+span.time{
+  color: lightgray;
+  float: right;
+}
+
 /* SWITCH */
 p.dark-text{
   color: white;

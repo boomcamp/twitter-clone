@@ -11,11 +11,20 @@ $(document).ready(function() {
     $(this).on("keypress", function() {
       if ($(this).val().length > 0) {
         $(".post-tweet").attr("disabled", false);
-        $(msgCount).innerText - $(this).val().length;
       } else {
         $(".post-tweet").attr("disabled", true);
       }
     });
+  });
+
+  $(this).on("input", function() {
+    if (msgCount.innerHtml > 0) {
+      $(msgCount).innerText - $(this).val().length;
+    } else if (msgCount.innerHtml <= 10) {
+      msgCount.addClassList("danger");
+    } else {
+      msgCount.removeClassList("danger");
+    }
   });
 
   $("#composeInput").on("blur", function() {

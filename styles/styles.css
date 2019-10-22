@@ -149,11 +149,11 @@ main {
 }
 
 /* DARK MODE */
-.dark-mode-color1{
+.dark-mode-color-header{
   background-color: #282828;
 }
 
-.dark-mode-color2{
+.dark_mode_color_tweets{
   background-color: grey;
   border-top: 1px solid black;
   display: flex;
@@ -161,7 +161,11 @@ main {
   padding: 8px;
 }
 
-
+/* ADDITIONAL CSS FROM ME */
+.image-post{
+  display: none;
+  margin: 0 0 10px 0;
+}
 
 /* SWITCH */
 p.dark-text{

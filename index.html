@@ -78,65 +78,127 @@
           </div>
         </div>
       </div>
-      <button class="darkMode">Enable Dark Mode</button>
+      <button style="width: 100%; height: 3vh;" class="EnableDark" >Enable Dark Mode</button>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
     <script>
+      
       $(document).ready(function(){
+        //FEATURES
+
+        function darkMode(){
+          $('.EnableDark').text('Disable Dark Mode').css('background', '#000').css('color', '#fff');
+          $('.compose').css('background-color', '#000');
+          $('.tweets').css('background-color', '#000');
+          $('.message').css('color', '#fff');
+          $('.display-name').css('color', '#fff');
+          if($('.EnableDark').hasClass('active')){
+            $('.EnableDark').text('Enable Dark Mode').css('background', '#fff').css('color', '#000');;
+            $('.compose').css('background-color', '#E7F7FD');
+            $('.tweets').css('background-color', 'white');
+            $('.message').css('color', '#000');
+            $('.display-name').css('color', '#000');
+          }
+        }
+        
+        function checkDarkMode(){
+          if($('.EnableDark').hasClass('active')){
+            $('.tweet').css('color', '#fff');
+          }
+        }
+
+        $('.EnableDark').on('click', function(){
+          darkMode();
+          $(this).toggleClass('active');  
+           
+        });
+
+        function dateDiff(dateTweeted){
+          setInterval(function(){ 
+            let dateNow = new Date();
+            let newDate = new Date(dateTweeted);
+            var timeDiff = (dateNow - newDate) /1000 / 60;
+            console.log(timeDiff);
+            if(timeDiff == 0){
+              return timeDiff; 
+            }else if(timeDiff >= 1 && timeDiff < 60){                 // in minutes
+              return Math.floor(timeDiff) + " minutes ago";
+            }else if(timeDiff >= 60 && timeDiff < 1440){              //in hours
+              return Math.floor((timeDiff / 60)) + " hours ago";
+            }else if(timeDiff >= 1440 && timeDiff < 10080){           //in days
+              return Math.floor((timeDiff / 1440)) + " hours ago";
+            }else if(timeDiff >= 10080 && timeDiff < 43830){          //in weeks
+              return Math.floor((timeDiff / 10080)) + " weeks ago";
+            }else if(timeDiff >= 43830 && timeDiff < 525960){         //in months
+              return Math.floor((timeDiff / 43830)) + " months ago";
+            }else{                                                    //in years
+              return Math.floor((timeDiff / 525960)) + " years ago";
+            }
+          }, 1000);
+        }
+        //END OF FEATURES
+
         $('.actions').hide();
         $('#composeInput').on('focus keypress', function(){
           $(this).addClass("expanded");        
           $('.input-button').hide();
           $('.actions').show();
 
-          $(this).on('input', function(){
-          let countTxt = $(this).val().length;
-          let countRem = 280 - countTxt;
-            if(countRem <= 280){
-              $('.post-tweet').attr("disabled", false);
-              $(".message-count").text(countRem);
-              if(countRem <= 10){
-                $(".message-count").addClass("danger");
-              }else{
-                $(".message-count").removeClass("danger");
+            $(this).on('input', function(){
+            let countTxt = $(this).val().length;
+            let countRem = 280 - countTxt;
+              if(countRem <= 280){
+                $('.post-tweet').attr("disabled", false);
+                $(".message-count").text(countRem);
+                if(countRem <= 10){
+                  $(".message-count").addClass("danger");
+                }else{
+                  $(".message-count").removeClass("danger");
+                }
+                if(countRem === 280){
+                  $('.post-tweet').attr("disabled", true);
+                } 
               }
-              if(countRem === 280){
-                $('.post-tweet').attr("disabled", true);
-              }
-            }
-          });
+            });
         });
         
-        $('.post-tweet').on('click', function(){
-          //let timeNow = new Date(); 
+        function DoneTweet(){
           $('#composeInput').removeClass("expanded");    
-          $('.input-button').show();
           $('.actions').hide();
-          $('.tweets').prepend(`
-          <div class="tweet">
-            <div class="profile">
-              <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
-            </div>
-            <div class="message">
-              <div class="posted-by">
-                <span class="display-name">Jeff</span
-                ><span class="handle">@jeffguy</span>
-              </div>
-              <div class="content">
-                <p> ${$('#composeInput').val()}</p>
-              </div>
-              <div class="tweet-actions">
-                <i class="far fa-comment"></i>
-                <i class="fas fa-retweet"></i>
-                <i class="far fa-heart"></i>
-                <i class="far fa-envelope"></i>
-                <i class="far fa-clock"></i>
-              </div>
-            </div>
-          </div>
-          `);
+          $('.post-tweet').attr("disabled", true);
+          $('.input-button').show();
+          $('.content > p').css('word-break', 'break-all');
+          $(".message-count").text('280').removeClass("danger");
           $('#composeInput').val('');
+        }
 
+        $('.post-tweet').on('click', function(){
+          let dateTweeted = new Date();
+          $('.tweets').prepend(`
+            <div class="tweet">
+              <div class="profile">
+                <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
+              </div>
+              <div class="message">
+                <div class="posted-by">
+                  <span class="display-name">Jeff</span
+                  ><span class="handle">@jeffguy</span>
+                </div>
+                <div class="content">
+                  <p>${$('#composeInput').val()}</p>
+                </div>
+                <div class="tweet-actions">
+                  <i class="far fa-comment"></i>
+                  <i class="fas fa-retweet"></i>
+                  <i class="far fa-heart"></i>
+                  <i class="far fa-envelope"></i>
+                  
+                </div>
+              </div>
+            </div>
+          `);      
+          checkDarkMode();
+          DoneTweet();
         });
 
         $('#composeInput').blur(function(){ 
@@ -146,6 +208,7 @@
             $('.actions').hide();
           }
         });
+
       });
     </script>
   </body>

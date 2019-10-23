@@ -21,6 +21,8 @@
   </head>
   <body>
     <main>
+        <label>Darkmode</label>
+        <input type="checkbox" id="switch" >
       <div class="compose">
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
@@ -62,6 +64,7 @@
             <img class="img-tweet-profile" src="img/funwatercat.jpg" />
           </div>
           <div class="message">
+
             <div class="posted-by">
               <span class="display-name">Michael</span
               ><span class="handle">@sometwitterguy</span>
@@ -75,10 +78,164 @@
               <i class="far fa-heart"></i>
               <i class="far fa-envelope"></i>
             </div>
+
+            
           </div>
         </div>
       </div>
+
+      
+        
     </main>
-    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <!-- <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script> -->
+    <script src="jquery.js"></script>
+     
+    <script>
+    $(document).ready(function(){  
+    
+    $('.actions').hide();
+    $('label').css('color', 'white');
+    
+
+    $('#composeInput').on('focus', function(){
+      $('.actions').show();
+      $('.input-button').hide();
+      $(this).addClass('expanded');
+      $(this).css('transition', '1s all ease');
+    });
+
+    $('#composeInput').on('blur', function(){
+      if(this.value == ''){
+      $('.actions').hide();
+      $('.input-button').show();
+      $(this).removeClass('expanded');
+    }
+    });
+
+    $('#composeInput').on('input',function(){
+      
+      if(this.value == ''){
+        $('.post-tweet').prop('disabled', true);
+      }
+      else{
+        $('.post-tweet').prop('disabled', false);
+      }
+
+      var bawas = $(this).val().length;
+      var newB = 280-bawas;
+      $('.message-count').text(newB);
+
+      if(newB <= 10){
+        $('.message-count').addClass('danger');
+      }
+      else{
+        $('.message-count').removeClass('danger');
+      }
+    });
+
+    $('.fa-heart').on('click', function(){
+      $(this).css('color', 'red');
+    });
+
+    $('.post-tweet').on('click', function(){
+      
+
+          
+      var tweet = $('#composeInput').val()
+      $('.tweets').prepend(`
+      <div class="tweet">
+        <div class="profile">
+          <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
+        </div>
+        <div class="message">
+          <div class="posted-by">
+            <span class="display-name">Jeff</span
+            ><span class="handle">@jeffguy</span>
+          </div>
+          <div class="content">
+            <p> ${tweet}</p>
+          </div>
+          <div class="tweet-actions">
+            <i class="far fa-comment"></i>
+            <i class="fas fa-retweet"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-envelope"></i>
+            
+          </div>
+        </div>
+      </div>
+      `);
+
+      $('#composeInput').removeClass("expanded");    
+      $('.input-button').show();
+      $('.actions').hide();
+      $('.tweet').css('transition', '1s all ease');
+      $('#composeInput').val('');
+      $('.post-tweet').prop('disabled', true);
+      $('.message-count').text('280');
+      $('p').css('word-break', 'break-all');
+      
+      if ($('#switch').prop('checked')) {
+        $('.compose').css('background-color', 'black');
+            $('.tweet').css('background-color', 'black');
+            $('html').css('background-color', 'white');
+            $('body').css('background-color', 'white');
+            $('.tweet').css('color', 'white');
+            $('.tweet').css('transition', '1s all ease');
+        } else {
+          $('.compose').css('background-color', '');
+            $('.tweet').css('background-color', '');
+            $('.tweet').css('color', '');
+            $('html').css('background-color', '');
+            $('body').css('background-color', '');
+            $('.tweet').css('transition', '1s all ease');
+        }
+
+        $('.fa-heart').on('click', function(){
+          $(this).css('color', 'red');
+        });
+        
+      $('.fa-heart').on('click', function(){
+        if((this).css('color') == 'red'){
+          $(this).css('color', '');
+        }
+        else{
+          $(this).css('color', '');
+        } 
+       });
+
+    });
+
+
+    $('#switch').on('click', () => {
+        if ($('#switch').prop('checked')) {
+            $('.compose').css('background-color', 'black');
+            $('.tweet').css('background-color', 'black');
+            $('html').css('background-color', 'white');
+            $('body').css('background-color', 'white');
+            $('.tweet').css('color', 'white');
+            $('.tweet').css('transition', '1s all ease');
+            $('label').css('color', 'black');
+        } else {
+            $('.compose').css('background-color', '');
+            $('.tweet').css('background-color', '');
+            $('.tweet').css('color', '');
+            $('html').css('background-color', '');
+            $('body').css('background-color', '');
+            $('.tweet').css('transition', '1s all ease');
+            $('label').css('color', 'white');
+        }
+    });
+   
+
+
+  });
+      
+   </script> 
+    
+    
+    
+    
+    
   </body>
 </html>

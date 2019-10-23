@@ -221,20 +221,20 @@
 
 					function timeStamp(){
 						if(postedTime_min <= 59){
-							postedTime_min += 1;
 							$(".time").text(`${postedTime_min}min ago`);
+							postedTime_min += 1;
 							count_min();
 						}
 						else if(postedTime_min >= 60 && postedTime_min < 1440){
-							postedTime_min += 1;
 							postedTime_min = Math.floor(postedTime_min/60);
-							$(".time").text(`${postedTime_min}hr ago`)
+							$(".time").text(`${postedTime_min}hr ago`);
+							postedTime_min += 1;
 							count_min();
 						}
 						else if(postedTime_min <= 1440){
-							postedTime_min += 1;
 							postedTime_min = Math.floor(postedTime_min/1440);
-							$(".time").text(`${postedTime_min}day ago`)
+							$(".time").text(`${postedTime_min}day ago`);
+							postedTime_min += 1;
 							count_min();
 						}
 					}

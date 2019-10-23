@@ -126,6 +126,13 @@ main {
   padding: 0 8px;
 }
 
+.tweets .tweet .message .handles{
+  font-size: 10px;
+  font-weight: normal;
+  color: lightgray;
+  
+}
+
 .display-name {
   font-weight: bold;
 }
@@ -144,7 +151,26 @@ main {
   margin-right: 8px;
 }
 
+
 .tweet .tweet-actions i {
   margin-right: 32px;
 }
-
+.night {
+  padding: 6px 0 0px 5px;
+  cursor: pointer;
+}
+.dark-theme .compose{
+background-color: black;
+}
+.dark-theme .tweets{
+  background-color: black;
+}
+.dark-theme .display-name{
+   color: white;
+ }
+ .dark-theme p{
+  color: white;
+}
+.dark-theme .tweet-actions{
+  color: white;
+}

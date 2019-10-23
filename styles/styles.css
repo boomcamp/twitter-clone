@@ -167,6 +167,24 @@ main {
 }
 
 .night {
-  padding: 6px 0 0px 5px;
-  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  font-size: 22px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+.light {
+  height: 30px;
+  width: 30px;
+  font-size: 22px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+.date {
+  color: #888;
+  font-size: 11px;
 }

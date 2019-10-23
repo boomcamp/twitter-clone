@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   font-family: sans-serif;
   background-color: black;
 }
@@ -25,20 +26,21 @@ main {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #E7F7FD;
+  background-color: #e7f7fd;
   padding: 8px;
 }
 
 .compose .input-container {
   min-height: 36px;
-  flex: 1 auto; }
+  flex: 1 auto;
+}
 
 .compose .input-container textarea {
   box-sizing: border-box;
   width: 100%;
   height: 34px;
   padding: 8px 32px 8px 8px;
-  border: 1px solid #C4ECFB;
+  border: 1px solid #c4ecfb;
   border-radius: 8px;
   resize: none;
 }
@@ -56,7 +58,7 @@ main {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  color: #13B5F0;
+  color: #13b5f0;
   padding: 8px 0;
 }
 
@@ -64,11 +66,11 @@ main {
   position: absolute;
   right: 24px;
   top: 18px;
-  color: #13B5F0;
+  color: #13b5f0;
 }
 
 .actions .action-buttons i {
-   margin: 4px 4px;
+  margin: 4px 4px;
 }
 
 .icon-button {
@@ -78,8 +80,8 @@ main {
 }
 
 .icon-button:hover {
-  border: 1px solid rgba(19,181,240,0.4);
-  color: #13B5F0;
+  border: 1px solid rgba(19, 181, 240, 0.4);
+  color: #13b5f0;
 }
 
 .icon-button:focus {
@@ -87,7 +89,7 @@ main {
 }
 
 .icon-button i {
-  color: #13B5F0;
+  color: #13b5f0;
   font-size: 20px;
 }
 
@@ -96,7 +98,7 @@ main {
   width: 72px;
   border: none;
   border-radius: 16px;
-  background-color: #13B5F0;
+  background-color: #13b5f0;
   color: white;
   font-weight: 500;
   font-size: 16px;
@@ -148,3 +150,41 @@ main {
   margin-right: 32px;
 }
 
+.dark {
+  background-color: #003448;
+}
+
+.dark-tweets {
+  background-color: #0b1c35;
+  border-top: 2px solid #192d4a;
+  color: white;
+}
+
+.dark-input {
+  background-color: #00283c;
+  border: 1px solid #29a3d0 !important;
+  color: white;
+}
+
+.night {
+  height: 30px;
+  width: 30px;
+  font-size: 22px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+.light {
+  height: 30px;
+  width: 30px;
+  font-size: 22px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+.date {
+  color: #888;
+  font-size: 11px;
+}

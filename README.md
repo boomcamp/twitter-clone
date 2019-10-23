@@ -1,11 +1,14 @@
 # Project Summary
+
 ---
+
 In this project you will need to implement some user interactions for a twitter clone. This clone
 isn't going to be an exact match with twitter but will be a good way to practice building interactive
 user experiences. You should have had an intro to JQuery at this point, so feel free to use JQuery
 to power your interactions.
 
 ## Project Objectives
+
 The goal of this exercise is to get familiar with taking a specification and implementing the desired
 functionality, this is what every software project consists of.
 
@@ -23,7 +26,6 @@ this project.
 [Stack Overflow](https://stackoverflow.com)
 
 ...plus anything else you can find :)
-
 
 ## Project Setup
 
@@ -45,16 +47,16 @@ this project.
 
 ## Feature 1 - Tweet Input
 
- The first UI interaction that needs to be built is the input for writing a tweet.
+The first UI interaction that needs to be built is the input for writing a tweet.
 
- If you open up the `index.html` the input area should look like this:
+If you open up the `index.html` the input area should look like this:
 
- ![tweet input](readme-assets/tweet_box_before.png)
+![tweet input](readme-assets/tweet_box_before.png)
 
 There are a few things wrong with this:
 
-* The tweet button is showing but the tweet input isn't focused and doesn't have any text.
-* All of the other buttons shouldn't be showing either, when the input isn't focused or has no text.
+- The tweet button is showing but the tweet input isn't focused and doesn't have any text.
+- All of the other buttons shouldn't be showing either, when the input isn't focused or has no text.
 
 Here are the requirements for this user interaction:
 
@@ -62,20 +64,20 @@ Here are the requirements for this user interaction:
 
 1. When the user first comes to the tweet input, the buttons below the input should be hidden.
 
-    > **Zero State (no user interaction yet)**
-    >
-    > ![tweet box zero state](readme-assets/tweet_box_zero_state.png)
+   > **Zero State (no user interaction yet)**
+   >
+   > ![tweet box zero state](readme-assets/tweet_box_zero_state.png)
 
 2. When the tweet input is focused (the user clicks in the input), the input area should double in size, and the tweet button and other
    buttons should be shown. Also the image button in the input should be hidden, since the same button
    appears in the buttons that were hidden previously.
 
-    > **Expanded State (user clicked into the input)**
-    >
-    > ![tweet box expanded state](readme-assets/tweet_box_expanded_state.png)
+   > **Expanded State (user clicked into the input)**
+   >
+   > ![tweet box expanded state](readme-assets/tweet_box_expanded_state.png)
 
-    In this expanded state, also notice that the tweet button is `disabled`. The user should not be
-    able to send an empty tweet.
+   In this expanded state, also notice that the tweet button is `disabled`. The user should not be
+   able to send an empty tweet.
 
 3. When a user begins to type into the input, the tweet button should become `enabled`. Also the
    character count indicator should decrement as the user types into the tweet input. When there are
@@ -101,12 +103,13 @@ Here are the requirements for this user interaction:
 
 ### Challenge Features
 
-* Add nicely formatted time stamps for tweets when they are added to the timeline.
+- Add nicely formatted time stamps for tweets when they are added to the timeline.
+
   > example: 1min ago, 1hr ago, 1day ago, etc....
 
-* Add a dark mode with css and a button to toggle it on and off.
+- Add a dark mode with css and a button to toggle it on and off.
 
-* Add a way for a user to add an image to their post.
+- Add a way for a user to add an image to their post.
 
 # Finished
 

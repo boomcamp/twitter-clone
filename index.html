@@ -20,9 +20,9 @@
     />
   </head>
   <body>
-    <main>
+    <main class="main">
       <div class="compose">
-        <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
+        <img class="img-profile" src="https://ca.slack-edge.com/T0QG5E3SL-UNS14PLF9-6ffaaa7007eb-72" alt="" />
         <div class="input-container">
           <textarea
             placeholder="What's happening?"
@@ -31,8 +31,14 @@
             maxlength="280"
             data-testid="tweet-input"
           ></textarea>
+            <div class="theme-switch-wrapper">
+              <label class="theme-switch" for="checkbox">
+                  <input type="checkbox" id="checkbox" />
+                  <div class="slider round"></div>
+            </label>
+          </div>
           <div class="input-button" data-testid="input-button">
-            <i class="fas fa-image"></i>
+            <i class="fas fa-image"></i>  
           </div>
           <div class="actions" data-testid="tweet-actions">
             <div class="action-buttons">
@@ -63,7 +69,7 @@
           </div>
           <div class="message">
             <div class="posted-by">
-              <span class="display-name">Michael</span
+              <span class="display-name">Jordan</span>
               ><span class="handle">@sometwitterguy</span>
             </div>
             <div class="content">
@@ -79,6 +85,7 @@
         </div>
       </div>
     </main>
+    <script src="app.js"></script>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
   </body>
 </html>

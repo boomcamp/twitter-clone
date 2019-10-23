@@ -85,17 +85,7 @@
     <script>
       $(".actions").hide();
 
-      function heart(){
-      $(".fa-heart").on('click', function(e) {
-        e.stopPropagation()
-        alert($(this).attr("id"))
-          var id = $(this).attr("id")
-          $(`#${id}`).toggleClass("reds blue");
-         
-          
-        });
-        
-      }
+      
       $("document").ready(function() {
         $("#composeInput").on("focus keyup", function() {
           $(".actions").show();
@@ -144,7 +134,7 @@
                 <div class="tweet-actions">
                   <i class="far fa-comment"></i>
                   <i class="fas fa-retweet"></i>
-                  <i class="far fa-heart" id="counter${counter}"></i>
+                  <i class="far fa-heart"></i>
                   <i class="far fa-envelope"></i>
                 </div>
               </div>
@@ -153,20 +143,20 @@
           $("#composeInput").val("");
           $("p").css("word-break", "break-all");
           $(".message-count").removeClass("danger");
-          heart()
-          // $(".fa-heart").on("click", function() {
-          //   if (
-          //     !$(this).attr("data-toggled") ||
-          //     $(this).attr("data-toggled") == "off"
-          //   ) {
-          //     $(this).attr("data-toggled", "on");
-          //     $(this).addClass("reds");
-          //   } else if ($(this).attr("data-toggled") == "on") {
-          //     $(this).attr("data-toggled", "off");
-          //     $(this).removeClass("reds");
-          //   }
+          
+          $(".fa-heart").on("click", function() {
+            if (
+              !$(this).attr("data-toggled") ||
+              $(this).attr("data-toggled") == "off"
+            ) {
+              $(this).attr("data-toggled", "on");
+              $(this).addClass("reds");
+            } else if ($(this).attr("data-toggled") == "on") {
+              $(this).attr("data-toggled", "off");
+              $(this).removeClass("reds");
+            }
 
-          // });
+          });
           
         });
 

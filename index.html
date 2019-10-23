@@ -17,27 +17,32 @@
       media="screen"
       title="no title"
       charset="utf-8"
-    />
+    />      
   </head>
   <body>
     <main>
       <div class="compose">
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
+          
           <textarea
             placeholder="What's happening?"
             name="tweetText"
             id="composeInput"
             maxlength="280"
             data-testid="tweet-input"
-          ></textarea>
+					></textarea>
+					<a class="close-img">&times;</a>
+					<img src="" id="preview_img" width="300" height="250" alt="">
+					<input type="file" id="file-image">
+
           <div class="input-button" data-testid="input-button">
             <i class="fas fa-image"></i>
           </div>
           <div class="actions" data-testid="tweet-actions">
             <div class="action-buttons">
               <button class="icon-button">
-                <i class="fas fa-image"></i>
+                <i class="fas fa-image" ></i>
               </button>
               <button class="icon-button">
                 <i class="fas fa-file-video"></i>
@@ -76,9 +81,185 @@
               <i class="far fa-envelope"></i>
             </div>
           </div>
-        </div>
+        </div>  
       </div>
+      <p class="dark-text">DARK MODE: </p>
+      <label class="switch">
+   
+        <input type="checkbox" class="darkmode">
+        <span class="slider"></span>
+      </label>  
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        let tmppath='',postedTime_min=1;
+        $(".actions").hide();
+
+        // var timeDiff = new Date().getHours() + new Date().getMinutes()
+        // if(timeDiff - postedTime == 60){
+        //   $('.time').text("a minute ago");
+        // }
+				
+				function hideTextarea(){
+					$(".actions").hide();
+          $(".input-button").show();
+          $("#composeInput").removeClass("expanded").val('');
+				}
+
+				function showTextarea(){
+					$(".actions").show();
+          $(".input-button").hide();
+          $("#composeInput").addClass("expanded");
+				}
+
+				function hideImagePreview(){
+					$("#file-image").val('');
+					$("#preview_img").attr('src', '').css('display', 'none');
+					$(".close-img").css('display', 'none');
+				}
+
+
+        // ---------------------- TWEET INPUT ---------------------- //
+        $("#composeInput").blur(function(){
+          if($(".fa-image").data("clicked"))
+						$(".fa-image").data("clicked", false)
+					
+					else if(this.value.length == 0 && $("#preview_img").attr("src") == "")
+            hideTextarea();
+        })
+    
+        $("#composeInput").on('focus keyup',function(){
+					showTextarea();
+       
+          // let max = 280;
+          let max = $("#composeInput").attr('maxlength');
+          max -= this.value.length;
+          $('.message-count').text(max)
+          
+          if(max <= 10)
+            $('.message-count').addClass('danger');
+          else
+            $('.message-count').removeClass('danger');
+
+          if(this.value != "" || $("#preview_img").attr("src") != "")
+            $(".post-tweet").attr("disabled", false);
+          else
+            $(".post-tweet").attr("disabled", true);
+        })
+
+
+        // ---------------------- ADD IMAGE ---------------------- //
+        $('.fa-image').mousedown(function(){
+          showTextarea();
+          $("#file-image").trigger("click");
+					$(".fa-image").data("clicked", true);
+        })
+
+        $('#file-image').change(function(event) {
+          tmppath = URL.createObjectURL(event.target.files[0]);
+          $("#preview_img").css('display', 'block').attr('src', tmppath);
+					$(".close-img").css('display', 'block');
+
+          if($("#preview_img").attr("src") != "")
+            $(".post-tweet").attr("disabled", false);
+        });
+
+				$('.close-img').click(function(){
+					hideImagePreview();
+					
+					if($("#composeInput").val() == "")
+						$(".post-tweet").attr("disabled", true);
+				});
+
+
+        // ---------------------- SUBMIT TWEET ---------------------- //
+        $(".post-tweet").click(function(){
+          // var postedTime  = new Date().getHours() + new Date().getMinutes()
+
+          $(".tweets").prepend(`
+          <div class="tweet">
+            <div class="profile">
+              <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
+            </div>
+            
+            <div class="message">
+              <div class="posted-by">
+                <span class="display-name">Jeff</span>
+                <span class="handle">@jeffguy</span>
+                <span class="time">a seconds ago</span>
+              </div>
+              
+              <div class="content">
+                <p>${$("#composeInput").val()}</p>
+              </div>
+
+              <img src="" id="image" width="300" height="250" class="image-post"/>
+
+              <div class="tweet-actions">
+
+                <i class="far fa-comment"></i>
+                <i class="fas fa-retweet"></i>
+                <i class="far fa-heart"></i>
+                <i class="far fa-envelope"></i>
+              </div>
+            </div>
+          </div>`);
+          
+          if($("#file-image").val()){
+            $("#image").css('display', 'block').fadeIn("fast").attr('src',tmppath);
+            hideImagePreview();
+          }
+
+          hideTextarea();
+          $('.message-count').text('280')
+          $(".post-tweet").attr("disabled", true);
+
+
+					// ---------------------- TIMESTAMP ---------------------- //
+					count_min();
+					function count_min(){
+						setTimeout(function(){
+							timeStamp();
+						}, 60000)
+					}
+
+					function timeStamp(){
+						if(postedTime_min <= 59){
+							$(".time").text(`${postedTime_min}min ago`);
+							postedTime_min += 1;
+							count_min();
+						}
+						else if(postedTime_min >= 60 && postedTime_min < 1440){
+							postedTime_min = Math.floor(postedTime_min/60);
+							$(".time").text(`${postedTime_min}hr ago`);
+							postedTime_min += 1;
+							count_min();
+						}
+						else if(postedTime_min >= 1440){
+							postedTime_min = Math.floor(postedTime_min/1440);
+							$(".time").text(`${postedTime_min}day ago`);
+							postedTime_min += 1;
+							count_min();
+						}
+					}
+        });
+
+
+        // ---------------------- DARK MODE ---------------------- //
+        $(".darkmode").change(function(){
+          if($('.darkmode').is(":checked")){
+            $('.compose').addClass("dark-mode-color-header")
+            $('.tweets').addClass("dark_mode_color_tweets")
+          }
+          else{
+            $('.compose').removeClass("dark-mode-color-header")
+            $('.tweets').removeClass("dark_mode_color_tweets")
+          }
+        });
+      });
+    </script>
+  
   </body>
 </html>

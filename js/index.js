@@ -1,12 +1,13 @@
 $(document).ready(function() {
   //initial state
-  $(".actions").hide();
+  $(".actions").fadeOut();
+  //start on focus
   $("#composeInput").on("focus", function() {
     $(".input-button").hide();
-    $(".actions").show();
+    $(".actions").fadeIn();
     $(this).addClass("expanded");
 
-    //start on focus
+    //start on input
     $(this).on("input", function() {
       if ($(this).val().length > 0) {
         $(".post-tweet").attr("disabled", false);
@@ -22,7 +23,7 @@ $(document).ready(function() {
       } else {
         $(".message-count").removeClass("danger");
       }
-    }); //on key press
+    }); //on input end
   }); //on focus end
 
   //on click tweet post
@@ -60,9 +61,25 @@ $(document).ready(function() {
   //start on blur
   $("#composeInput").on("blur", function() {
     if ($(this).val() === "") {
-      $(".input-button").show();
+      $(".input-button").fadeIn();
       $(".actions").hide();
       $("#composeInput").removeClass("expanded");
     }
   }); //on blur end
+
+  //toggle dark mode
+  $(".inner-switch").on("click", function() {
+    if ($("main").hasClass("dark")) {
+      $("main").removeClass("dark");
+      $(".inner-switch").text("OFF");
+    } else {
+      $("main").addClass("dark");
+      $(".inner-switch").text("ON");
+    }
+  });
+
+  //change image
+  $(".fa-image").on("click", function() {
+    console.log(this);
+  });
 }); //document end

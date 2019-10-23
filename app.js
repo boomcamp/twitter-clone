@@ -7,16 +7,27 @@ const tweet = document.getElementsByClassName("tweet")[0];
 const tweets = document.getElementsByClassName("tweets")[0];
 const inputButton = document.getElementsByClassName("input-button")[0];
 const actionButton = document.getElementsByClassName("action-buttons")[0];
+const nightButton = document.getElementsByClassName("night")[0];
+const lightButton = document.getElementsByClassName("light")[0];
 
 let clicked = false;
+lightButton.style.display = "none";
 actions.style.display = "none";
 
-$(document).ready(function() {
-  $(".night").on("click", function() {
-    $(".compose").toggleClass("dark");
-    $(".tweets").toggleClass("dark-tweets");
-    $("#composeInput").toggleClass("dark-input");
-  });
+nightButton.addEventListener("click", function(event) {
+  compose.classList.add("dark");
+  tweets.classList.add("dark-tweets");
+  composeInput.classList.add("dark-input");
+  lightButton.style.display = "";
+  nightButton.style.display = "none";
+});
+
+lightButton.addEventListener("click", function(event) {
+  compose.classList.remove("dark");
+  tweets.classList.remove("dark-tweets");
+  composeInput.classList.remove("dark-input");
+  lightButton.style.display = "none";
+  nightButton.style.display = "";
 });
 
 composeInput.addEventListener("blur", function(event) {
@@ -45,7 +56,6 @@ composeInput.addEventListener("focus", function(event) {
     inputButton.style.display = "none";
     actionButton.style.display = "";
     composeInput.classList.add("expanded");
-    document.getElementsByClassName("input-button")[0].style.display = "none";
     clicked = true;
   }
   event.stopPropagation();
@@ -62,6 +72,9 @@ composeInput.addEventListener("input", function() {
 });
 
 postTweet.addEventListener("click", function(event) {
+  $(document).ready(function() {
+    $(".date").html(jQuery.timeago(new Date()));
+  });
   var div = document.createElement("div");
   div.innerHTML += `<div class="tweet">
     <div class="profile">
@@ -74,6 +87,7 @@ postTweet.addEventListener("click", function(event) {
       </div>
       <div class="content">
         <p>${composeInput.value} </p>
+        <p class=date></p>
       </div>
       <div class="tweet-actions">
         <i class="far fa-comment"></i>

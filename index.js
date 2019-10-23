@@ -2,23 +2,25 @@ $("document").ready(function() {
    var max = parseInt($("textarea").attr("maxlength"));
 
    $(".actions").hide();
-   $(".input-container textarea").blur(function() {
+   $(".input-container textarea").blur(blurCont);
+   $(".input-container textarea").focus(focusCont);
+   $("#dark-mode").on("click", darkMode);
+
+   function blurCont() {
       if ($(".input-container textarea").val() == "") {
          $(".actions").hide();
          $(".input-container textarea").removeClass("expanded");
          $(".input-button").show();
       }
-   });
+   }
 
-   $(".input-container textarea").focus(function() {
+   function focusCont() {
       $(".actions").show();
       $(".input-button").hide();
       $("textarea").on("keypress input", tweet);
       $(".input-container textarea").addClass("expanded");
       $("textarea").on("keypress input", count);
-   });
-
-   $("#dark-mode").on("click", darkMode);
+   }
 
    function tweet() {
       if ($(this).val() != "") {

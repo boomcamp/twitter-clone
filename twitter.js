@@ -1,4 +1,6 @@
 var text= document.querySelector('#composeInput')
+var dark= document.querySelector('.dark')
+
 $(document).ready( function() {
   $('.actions').hide();
   $('#composeInput').on('focus', function() {
@@ -64,7 +66,11 @@ $(document).ready( function() {
     $('#composeInput').removeClass('expanded');
     $('#composeInput').val('');
 
-  });
+    //     $('.dark').on('click', function(){
+    // });
+ 
+  }); 
+     
 });
 
 

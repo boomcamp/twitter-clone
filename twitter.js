@@ -66,9 +66,10 @@ $(document).ready( function() {
     $('#composeInput').removeClass('expanded');
     $('#composeInput').val('');
 
-    //     $('.dark').on('click', function(){
-    // });
- 
+  
+    });
+    $('.dark').on('click', function(){
+      $('.input-button').show('.color');
   }); 
      
 });

@@ -109,13 +109,8 @@ main {
   background-color: #13B5F0;
   color: white;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
 }
-.color{
-  background-color: black;
-};
-.cha
-
 .post-tweet[disabled] {
   opacity: 0.3;
 }

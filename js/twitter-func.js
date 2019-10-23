@@ -6,18 +6,9 @@ $(document).ready(function(){
         $('.actions').show();
         $('#composeInput').addClass('expanded');
         $('.input-button').css('display','none');
-
-        // $('.post-tweet').attr('disabled');
-
-        // if(e.target.value.length > 0){
-        //     $('.post-tweet').removeAttr('disabled');
-        // }else{
-        //     $('.post-tweet').attr('disabled');
-        // }
    });
 
    $('.message-count').text(280 - $('#composeInput').val().length);
-
 
    $('#composeInput').on('keyup',function(e){
        
@@ -32,28 +23,26 @@ $(document).ready(function(){
             $('.message-count').css('color','#13B5F0');
         }
 
-        if(e.target.value.length){
+        if($('#composeInput').val().length > 0){
             console.log('enabled');
             $('.post-tweet').removeAttr('disabled');
-        }else{
-            console.log('disabled');
-            $('.post-tweet').attr('disabled', true);
         }
+        
    });
 
    $('#composeInput').on('blur',function(e){
-
         if(e.target.value.length == 0){
             $('.actions').hide();
             $('#composeInput').removeClass('expanded');
             $('.input-button').show();
             $('.message-count').val(280);
         }
+       
    });
 
    let clicktogle = true;
 
-    $('.darkknight').on('click',function(){
+   function isdarkba(){
 
         if(clicktogle){
             $('.compose').css('background-color', '#2b2b2b');
@@ -85,16 +74,14 @@ $(document).ready(function(){
 
             clicktogle = true;
         }
-    });
+   }
 
-    $('.lighttheme').on('click',function(){
+    $('.darkknight').on('click',isdarkba);
 
-    });
 
     $('.post-tweet').on('click',function(e){
 
-        var currtime = new Date();
-
+        let newimage = imagenow;
 
         $('.tweets').prepend(
             `<div class="tweet">
@@ -108,6 +95,7 @@ $(document).ready(function(){
                     </div>
                     <div class="content">
                         <p>${$('#composeInput').val()}</p>
+                        <image src= '${imagenow}'style='height:200px;'>
                     </div>
                      <div class="tweet-actions">
                         <i class="far fa-comment"></i>
@@ -124,20 +112,50 @@ $(document).ready(function(){
         $('#composeInput').removeClass('expanded');
         $('.input-button').show();
         $('.post-tweet').prop('disabled', true);
-        // $('.message-count').html(280);
+        $('#displ').attr('src','');
+        $('.rmvfile').hide();
 
-        setInterval(function(){
+
+        if(!clicktogle){
+            clicktogle = !clicktogle
+            isdarkba();
+        }
+
+        setTimeout(function(){
             $('#timestamp-new').html('a second ago');
-        },1000);
+        },1000); 
+
+        setTimeout(function(){
+            $('#timestamp-new').html('a minute ago');
+        },60000);
     
-        setInterval(function(){
+        setTimeout(function(){
             $('#timestamp-new').html('an hour ago');
         },3600000);
     });
 
+    //for image
+
+    var imagenow;
     
-    // $('.fa-image').on('click',function(){
-    //     alert('image');
-    // });
-    
+    $('.inpimg').on('change',function(e){
+
+        let freader = new FileReader();
+
+        freader.readAsDataURL(e.target.files[0]);
+
+        freader.onloadend = function () {
+            $('#displ').attr('src', freader.result);
+            imagenow = freader.result;
+        } 
+        
+        $('.rmvfile').show();
+    });
+
+    $('.rmvfile').on('click',function(){
+        imagenow = '';
+        $('#displ').attr('src','');
+        $('.rmvfile').hide();
+    });
+
 });

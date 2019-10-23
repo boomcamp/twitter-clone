@@ -94,7 +94,7 @@
     
     <script>
       $(document).ready(function(){
-        let color="",tmppath='',postedTime_min=1;
+        let tmppath='',postedTime_min=1;
         $(".actions").hide();
 
         // var timeDiff = new Date().getHours() + new Date().getMinutes()
@@ -114,11 +114,18 @@
           $("#composeInput").addClass("expanded");
 				}
 
+				function hideImagePreview(){
+					$("#file-image").val('');
+					$("#preview_img").attr('src', '').css('display', 'none');
+					$(".close-img").css('display', 'none');
+				}
+
+
         // ---------------------- TWEET INPUT ---------------------- //
         $("#composeInput").blur(function(){
-          if($(".fa-image").data("clicked")){
+          if($(".fa-image").data("clicked"))
 						$(".fa-image").data("clicked", false)
-					}
+					
 					else if(this.value.length == 0 && $("#preview_img").attr("src") == "")
             hideTextarea();
         })
@@ -142,6 +149,7 @@
             $(".post-tweet").attr("disabled", true);
         })
 
+
         // ---------------------- ADD IMAGE ---------------------- //
         $('.fa-image').mousedown(function(){
           showTextarea();
@@ -159,20 +167,19 @@
         });
 
 				$('.close-img').click(function(){
-					$("#file-image").val('');
-					$("#preview_img").attr('src', '').css('display', 'none');
-					$(".close-img").css('display', 'none');
+					hideImagePreview();
 					
 					if($("#composeInput").val() == "")
 						$(".post-tweet").attr("disabled", true);
 				});
+
 
         // ---------------------- SUBMIT TWEET ---------------------- //
         $(".post-tweet").click(function(){
           // var postedTime  = new Date().getHours() + new Date().getMinutes()
 
           $(".tweets").prepend(`
-          <div class="tweet ${color}">
+          <div class="tweet">
             <div class="profile">
               <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
             </div>
@@ -202,14 +209,13 @@
           
           if($("#file-image").val()){
             $("#image").css('display', 'block').fadeIn("fast").attr('src',tmppath);
-            $("#file-image").val('') 
-            $("#preview_img").attr('src', '').css('display', 'none');
-						$(".close-img").css('display', 'none') 
+            hideImagePreview();
           }
 
           hideTextarea();
           $('.message-count').text('280')
-          $(".post-tweet").prop("disabled", true);
+          $(".post-tweet").attr("disabled", true);
+
 
 					// ---------------------- TIMESTAMP ---------------------- //
 					count_min();
@@ -231,7 +237,7 @@
 							postedTime_min += 1;
 							count_min();
 						}
-						else if(postedTime_min <= 1440){
+						else if(postedTime_min >= 1440){
 							postedTime_min = Math.floor(postedTime_min/1440);
 							$(".time").text(`${postedTime_min}day ago`);
 							postedTime_min += 1;
@@ -245,13 +251,11 @@
         $(".darkmode").change(function(){
           if($('.darkmode').is(":checked")){
             $('.compose').addClass("dark-mode-color-header")
-            $('.tweet').addClass("dark_mode_color_tweets")
-            color = "dark_mode_color_tweets";
+            $('.tweets').addClass("dark_mode_color_tweets")
           }
           else{
             $('.compose').removeClass("dark-mode-color-header")
-            $('.tweet').removeClass("dark_mode_color_tweets")
-            color = "";
+            $('.tweets').removeClass("dark_mode_color_tweets")
           }
         });
       });

@@ -6,6 +6,7 @@ html, body {
 main {
   width: 588px;
   margin: 0 auto;
+  border: solid 1px white;
 }
 
 .danger {
@@ -27,6 +28,7 @@ main {
   justify-content: flex-start;
   background-color: #E7F7FD;
   padding: 8px;
+  border-bottom: solid 1px white;
 }
 
 .compose .input-container {
@@ -96,7 +98,7 @@ main {
   width: 72px;
   border: none;
   border-radius: 16px;
-  background-color: #13B5F0;
+  background-color: #13B5F0 !important;
   color: white;
   font-weight: 500;
   font-size: 16px;
@@ -117,8 +119,9 @@ main {
 .tweets .tweet {
   display: flex;
   flex-direction: row;
-  border-top: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
   padding: 8px;
+  border-bottom: 1px solid lightgray;
 }
 
 .tweets .tweet .message {
@@ -148,3 +151,24 @@ main {
   margin-right: 32px;
 }
 
+.switch {
+  align-self: flex-end;
+  margin: 0.9375rem;
+}
+.inner-switch {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #555;
+  border-radius: 1.25rem;
+  width: 3.125rem;
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.1875rem;
+  margin-left: 0.3125rem;
+}
+.dark, .dark *
+{
+    background-color: #222;
+    color: #e6e6e6;
+    
+}

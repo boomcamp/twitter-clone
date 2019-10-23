@@ -47,7 +47,6 @@ composeInput.addEventListener("input", function() {
 });
 
 tweetBtn.addEventListener("click", function() {
-  var cur = Date.now();
   var div = document.createElement("div");
   div.innerHTML += `<div class="tweet">
     <div class="profile">
@@ -72,7 +71,7 @@ tweetBtn.addEventListener("click", function() {
 
   tweets.insertBefore(div, tweet);
   composeInput.value = "";
-  msgCount.innerHTML = 280;
+  count.innerHTML = 280;
   composeInput.classList.remove("expanded");
   actions.style.display = "none";
   inputBtn.style.display = "";

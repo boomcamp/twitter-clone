@@ -119,23 +119,8 @@
             }
           }
         }
-        var date1 = new Date().getTime();
-        $('.post-tweet').click(function(){
-          var date2 = new Date().getTime();
-          var time = Math.round(((date2 - date1)/1000).toString());
-          if(time >= 86400){
-            var sec = Math.round((((((date2 - date1)/1000)/600)/3600)/86400).toString())
-            var newtime = time/86400 + "days ago"
-          }
-          if(time >= 3600){
-            sec = Math.round(((((date2 - date1)/1000)/600)/3600).toString())
-            newtime = time/3600 + "hrs ago"
-          }else if(time >= 60){
-            sec = Math.round((((date2 - date1)/1000)/600).toString())
-            newtime = time/60 + "mins ago"
-          }else if(time < 60){
-            newtime = time + "seconds ago"
-          }
+        
+        $('.post-tweet').on('click',function(){
           var element = $(`
           <div class='tweet'>
             <div class='profile'>
@@ -145,7 +130,7 @@
               <div class='posted-by'>
                 <span class='display-name'>Franco</span>
                 <span class='handle'>@anothertwitterguy</span>
-                <span class='handle'>${newtime}</span>
+                <span class='handle' id="time">a second ago</span>
               </div>
               <div class='content'>
                 <p>${$("#composeInput").val()}</p>
@@ -164,10 +149,41 @@
           $('.message-count').text("280");
           $('.input-button').show();
         });
-        
-        // $(".fa-image").on("click", function(){
-        //   $(".fa-image").attr("accept", "image/*")
-        // })
+        // for timestamp
+        count();t=0,m=0,h=0,d=0;
+        function count(){
+          setTimeout(function() {
+            timedCount()
+          }, 1000);
+        }
+        function timedCount() {
+          if(t < 60){
+            t += 1;
+            $("#time").text(`${t}seconds ago`);
+            if(t%60 === 0){
+              m += 1;
+              $("#time").text(`${m}min ago`);
+            }else if(t%3600 === 0){
+              h += 1;
+              $("#time").text(`${h}hr ago`);
+            }else if(t%86400 === 0){
+              d += 1;
+              $("#time").text(`${h}day ago`);
+            }
+          }
+          count()
+        }
+        //for dark mode
+        $('.input-container').append("<label class='switch'><input type='checkbox' class='thischeck'><span class='slider round'></span></label>");
+        $('.thischeck').change(function(){
+          if($('.thischeck').is(':checked')){
+            $('.compose').addClass("dark-panel");
+            $('.tweets').addClass("dark");
+          }else{
+            $('.compose').removeClass("dark-panel");
+            $('.tweets').removeClass("dark");
+          }
+        });
       });
     </script>
   </body>

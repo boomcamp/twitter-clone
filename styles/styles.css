@@ -128,10 +128,12 @@ main {
 
 .display-name {
   font-weight: bold;
+  margin-top: 1000000%;
 }
 
 .handle {
   color: lightgray;
+ 
 }
 
 .img-tweet-profile {
@@ -141,7 +143,7 @@ main {
 }
 
 .tweet .posted-by span {
-  margin-right: 8px;
+  margin-right: 8px; 
 }
 
 .tweet .tweet-actions i {

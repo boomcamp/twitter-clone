@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	var max = 280;
-	$(".message-count").text(max);
+	var max = parseInt($("textarea").attr("maxlength"));
+
 	$(".actions").hide();
 	$(".input-container textarea").blur(function() {
 		if ($(".input-container textarea").val() == "") {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$(".input-container textarea").focus(function() {
 		$(".actions").show();
 		$(".input-button").hide();
-		$("textarea").on("keyup", buttonchange);
+		$("textarea").on("keypress input", buttonchange);
 		$(".input-container textarea").addClass("expanded");
 	});
 
@@ -33,21 +33,16 @@ $(document).ready(function() {
 		if ($("textarea").val() == "") {
 			$(".post-tweet").attr("disabled", true);
 		}
+
+		$(".message-count").text(280);
 	});
 
 	//functions
 	function buttonchange() {
-		var text = $("textarea").val();
-		var max = max - text.length;
-
 		$(".message-count").text(max);
+		var total = max - $("textarea").val().length;
 
-		if (text.length > max) {
-			var new_text = text.substr(0, max);
-			$(".message-count").val(new_text);
-		} else {
-			$(".message-count").text(total);
-		}
+		$(".message-count").text(total);
 
 		if (total <= 10) {
 			$(".message-count").css("color", "red");

@@ -148,3 +148,26 @@ main {
   margin-right: 32px;
 }
 
+
+.darkknight{
+  background-color: #E7F7FD;
+  border: none;
+  color: black;
+  display:flex;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+
+.rmvfile{
+  background: rgba(19,181,240,0.9);
+  border: none;
+  color: white;
+  position: absolute;
+  cursor: pointer;
+}
+
+.fa-image{
+  cursor: pointer;
+}

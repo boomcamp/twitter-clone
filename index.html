@@ -31,13 +31,16 @@
             maxlength="280"
             data-testid="tweet-input"
           ></textarea>
+          <button class="rmvfile" style="display: none;">X</button>
+          <img id="displ" src="" style="height:150px;">
           <div class="input-button" data-testid="input-button">
-            <i class="fas fa-image"></i>
+            <label class="fas fa-image" for="inputImage"></label>
+            <input class="inpimg" type="file" id="inputImage" style="display: none;">
           </div>
           <div class="actions" data-testid="tweet-actions">
             <div class="action-buttons">
-              <button class="icon-button">
-                <i class="fas fa-image"></i>
+              <button class="icon-button"></button>
+                <label class="fas fa-image" for="inputImage"></label>
               </button>
               <button class="icon-button">
                 <i class="fas fa-file-video"></i>
@@ -78,7 +81,11 @@
           </div>
         </div>
       </div>
+
+      <div class="toggler">
+        <button class="darkknight">DarkMode</button>
+      </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script src="./js/twitter-func.js"></script>
   </body>
-</html>

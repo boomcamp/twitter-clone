@@ -28,6 +28,28 @@ $(document).ready(function() {
 
   //on click tweet post
   $(".post-tweet").on("click", function() {
+    var today = new Date();
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(month[today.getMonth()]);
+    var yyyy = today.getFullYear();
+    var hr = String(today.getHours()).padStart(2, "0");
+    var min = String(today.getMinutes()).padStart(2, "0");
+
+    today = dd + " " + mm + " " + yyyy + " " + hr + ":" + min;
+    console.log(today);
     let post = `<div class="tweet">
     <div class="profile">
       <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
@@ -41,7 +63,7 @@ $(document).ready(function() {
         <p>${$("textarea[id*='composeInput']").val()}</p>
       </div>
       <div class="time">
-          <p>Posted <time class="timeago" datetime="23 October 2019 4:37"></time></p>
+          <p>Posted <time class="timeago" datetime="${today}"></time></p>
       </div>
       <div class="tweet-actions">
         <i class="far fa-comment"></i>

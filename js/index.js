@@ -49,7 +49,6 @@ $(document).ready(function() {
     var min = String(today.getMinutes()).padStart(2, "0");
 
     today = dd + " " + mm + " " + yyyy + " " + hr + ":" + min;
-    console.log(today);
     let post = `<div class="tweet">
     <div class="profile">
       <img class="img-tweet-profile" src="img/damenleeturks.jpg" />

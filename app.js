@@ -9,6 +9,8 @@ const inputBtn = document.getElementsByClassName("input-button")[0];
 const actionBtn = document.getElementsByClassName("action-buttons")[0];
 
 let clicked = false;
+let today = new Date();
+a = today.toLocaleString("en-US", { timeZone: "Asia/Manila" });
 actions.style.display = "none";
 
 composeInput.addEventListener("blur", function(event) {
@@ -54,7 +56,7 @@ post.addEventListener("click", function(event) {
     <div class="message">
       <div class="posted-by">
         <span class="display-name">Jeff</span
-        ><span class="handle">@jeffguy</span>
+        ><span class="handle">@jeffguy ${a}</span>
       </div>
       <div class="content">
         <p>${composeInput.value}</p>

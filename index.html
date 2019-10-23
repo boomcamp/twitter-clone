@@ -24,13 +24,17 @@
       <div class="compose">
         <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
         <div class="input-container">
+          
           <textarea
             placeholder="What's happening?"
             name="tweetText"
             id="composeInput"
             maxlength="280"
             data-testid="tweet-input"
-          ></textarea><input type="file" id="file-image">
+					></textarea>
+					<a class="close-img">&times;</a>
+					<img src="" id="preview_img" width="300" height="250" alt="">
+					<input type="file" id="file-image">
 
           <div class="input-button" data-testid="input-button">
             <i class="fas fa-image"></i>
@@ -38,7 +42,7 @@
           <div class="actions" data-testid="tweet-actions">
             <div class="action-buttons">
               <button class="icon-button">
-                <i class="fas fa-image"></i>
+                <i class="fas fa-image" ></i>
               </button>
               <button class="icon-button">
                 <i class="fas fa-file-video"></i>
@@ -90,26 +94,37 @@
     
     <script>
       $(document).ready(function(){
-        let color="", tmppath='',postedTime=0;
+        let color="",tmppath='',postedTime_min=0;
         $(".actions").hide();
 
         // var timeDiff = new Date().getHours() + new Date().getMinutes()
         // if(timeDiff - postedTime == 60){
         //   $('.time').text("a minute ago");
         // }
+				
+				function hideTextarea(){
+					$(".actions").hide();
+          $(".input-button").show();
+          $("#composeInput").removeClass("expanded").val('');
+				}
 
+				function showTextarea(){
+					$(".actions").show();
+          $(".input-button").hide();
+          $("#composeInput").addClass("expanded");
+				}
+
+        // ---------------------- TWEET INPUT ---------------------- //
         $("#composeInput").blur(function(){
-          if(this.value.length == 0){
-            $(".actions").hide();
-            $(".input-button").show();
-            $("#composeInput").removeClass("expanded");
-          }
+          if($(".fa-image").data("clicked")){
+						$(".fa-image").data("clicked", false)
+					}
+					else if(this.value.length == 0 && $("#preview_img").attr("src") == "")
+            hideTextarea();
         })
     
         $("#composeInput").on('focus keyup',function(){
-          $(".actions").show();
-          $(".input-button").hide();
-          $("#composeInput").addClass("expanded");
+					showTextarea();
        
           // let max = 280;
           let max = $("#composeInput").attr('maxlength');
@@ -121,22 +136,40 @@
           else
             $('.message-count').removeClass('danger');
 
-          if(this.value == "")   
-            $(".post-tweet").attr("disabled", true);
-          else
+          if(this.value != "" || $("#preview_img").attr("src") != "")
             $(".post-tweet").attr("disabled", false);
+          else
+            $(".post-tweet").attr("disabled", true);
         })
 
+        // ---------------------- ADD IMAGE ---------------------- //
+        $('.fa-image').mousedown(function(){
+          showTextarea();
+          $("#file-image").trigger("click");
+					$(".fa-image").data("clicked", true);
+        })
 
-        $('#file-image').change( function(event) {
-          $(".actions").show();
-          $(".input-button").hide();
-          $("#composeInput").addClass("expanded");
+        $('#file-image').change(function(event) {
           tmppath = URL.createObjectURL(event.target.files[0]);
+          $("#preview_img").css('display', 'block').attr('src', tmppath);
+					$(".close-img").css('display', 'block');
+
+          if($("#preview_img").attr("src") != "")
+            $(".post-tweet").attr("disabled", false);
         });
 
+				$('.close-img').click(function(){
+					$("#file-image").val('');
+					$("#preview_img").attr('src', '').css('display', 'none');
+					$(".close-img").css('display', 'none');
+					
+					if($("#composeInput").val() == "")
+						$(".post-tweet").attr("disabled", true);
+				});
+
+        // ---------------------- SUBMIT TWEET ---------------------- //
         $(".post-tweet").click(function(){
-          var postedTime  = new Date().getHours() + new Date().getMinutes()
+          // var postedTime  = new Date().getHours() + new Date().getMinutes()
 
           $(".tweets").prepend(`
           <div class="tweet ${color}">
@@ -168,18 +201,47 @@
           </div>`);
           
           if($("#file-image").val()){
-            $("#image").css('display', 'block');
-            $("#image").fadeIn("fast").attr('src',tmppath);
+            $("#image").css('display', 'block').fadeIn("fast").attr('src',tmppath);
             $("#file-image").val('') 
+            $("#preview_img").attr('src', '').css('display', 'none');
+						$(".close-img").css('display', 'none') 
           }
 
-          $(".actions").hide();
-          $(".input-button").show();
-          $("#composeInput").removeClass("expanded").val('');
+          hideTextarea();
           $('.message-count').text('280')
           $(".post-tweet").prop("disabled", true);
+
+					// ---------------------- TIMESTAMP ---------------------- //
+					count_min();
+					function count_min(){
+						setTimeout(function(){
+							timeStamp();
+						}, 60000)
+					}
+
+					function timeStamp(){
+						if(postedTime_min <= 59){
+							postedTime_min += 1;
+							$(".time").text(`${postedTime_min}min ago`);
+							count_min();
+						}
+						else if(postedTime_min >= 60 && postedTime_min < 1440){
+							postedTime_min += 1;
+							postedTime_min = Math.floor(postedTime_min/60);
+							$(".time").text(`${postedTime_min}hr ago`)
+							count_min();
+						}
+						else if(postedTime_min <= 1440){
+							postedTime_min += 1;
+							postedTime_min = Math.floor(postedTime_min/1440);
+							$(".time").text(`${postedTime_min}day ago`)
+							count_min();
+						}
+					}
         });
 
+
+        // ---------------------- DARK MODE ---------------------- //
         $(".darkmode").change(function(){
           if($('.darkmode').is(":checked")){
             $('.compose').addClass("dark-mode-color-header")
@@ -192,7 +254,6 @@
             color = "";
           }
         });
-
       });
     </script>
   

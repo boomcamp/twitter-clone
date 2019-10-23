@@ -167,7 +167,26 @@ main {
   margin: 0 0 10px 0;
 }
 
-.file-image{
+#preview_img{
+  display: none;
+  margin: 0;
+}
+
+.close-img{
+  margin: 10px;
+  display: none;
+  text-decoration: none;
+  color: red; 
+  font-weight: 700;
+  cursor: pointer;
+  position: absolute;
+}
+.close-img:hover{
+  color: lightcoral;
+}
+
+#file-image{
+  display: none;
   color: grey;
 }
 

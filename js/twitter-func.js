@@ -8,26 +8,14 @@ $(document).ready(function(){
         $('.input-button').css('display','none');
    });
 
-   $('.message-count').text(280 - $('#composeInput').val().length);
-
    $('#composeInput').on('keyup',function(e){
-       
-
-        var remaining = 280- e.target.value.length;
-
-        $('.message-count').text(remaining);
+        $('.message-count').text(280- e.target.value.length);
             
-        if($('.message-count').html() < 10){
-            $('.message-count').css('color','red');
-        }else{
-            $('.message-count').css('color','#13B5F0');
-        }
+        $('.message-count').html() < 10? $('.message-count').addClass('danger'): $('.message-count').removeClass('danger');
 
         if($('#composeInput').val().length > 0){
-            console.log('enabled');
             $('.post-tweet').removeAttr('disabled');
         }
-        
    });
 
    $('#composeInput').on('blur',function(e){
@@ -37,8 +25,8 @@ $(document).ready(function(){
             $('.input-button').show();
             $('.message-count').val(280);
         }
-       
    });
+
 
    let clicktogle = true;
 
@@ -51,12 +39,10 @@ $(document).ready(function(){
             $('.action-buttons .fas').css('color', 'white');
             $('.fa-retweet').css('color', 'white');
             $('#composeInput').css('border-color', '#2b2b2b');
-            $('.tweet').css('background-color', 'rgb(35, 35, 35)');
-            $('.tweet').css('color', 'white');
-            $('.darkknight').css('background-color', '#2b2b2b');
-            $('.darkknight').css('color', 'white');
+            $('.tweet').css({color:'white', backgroundColor:'rgb(35, 35, 35)'});
+            $('.darkknight').css({color:'white', backgroundColor:'#2b2b2b'});
+
             $('.darkknight').html('Light Mode');
-            
 
             clicktogle = false;
         }else{
@@ -66,10 +52,9 @@ $(document).ready(function(){
             $('.action-buttons .fas').css('color', '#13B5F0');
             $('.fa-retweet').css('color', 'black');
             $('#composeInput').css('border-color', '#C4ECFB');
-            $('.tweet').css('background-color', 'white');
-            $('.tweet').css('color', 'black');
-            $('.darkknight').css('background-color', '#E7F7FD');
-            $('.darkknight').css('color', 'black');
+            $('.tweet').css({color:'black', backgroundColor:'white'});
+            $('.darkknight').css({color:'black', backgroundColor:'#E7F7FD'});
+
             $('.darkknight').html('Dark Mode');
 
             clicktogle = true;
@@ -82,6 +67,7 @@ $(document).ready(function(){
     $('.post-tweet').on('click',function(e){
 
         let newimage = imagenow;
+        let idstamp = Math.floor(Math.random() * 69).toString();
 
         $('.tweets').prepend(
             `<div class="tweet">
@@ -91,11 +77,11 @@ $(document).ready(function(){
                 <div class="message">
                     <div class="posted-by">
                         <span class="display-name">Jeff</span><span class="handle">@jeffguy</span>
-                        <span class="handle" id="timestamp-new"></span>
+                        <span class="handle" id="${idstamp}"></span>
                     </div>
                     <div class="content">
                         <p>${$('#composeInput').val()}</p>
-                        <image src= '${imagenow}'style='height:200px;'>
+                        <image src= '${imagenow}'style='height:200px'>
                     </div>
                      <div class="tweet-actions">
                         <i class="far fa-comment"></i>
@@ -107,6 +93,7 @@ $(document).ready(function(){
             </div>`
         );
 
+        //resetting
         $('#composeInput').val('');
         $('.actions').hide();
         $('#composeInput').removeClass('expanded');
@@ -115,28 +102,30 @@ $(document).ready(function(){
         $('#displ').attr('src','');
         $('.rmvfile').hide();
 
+        imagenow = '';
 
         if(!clicktogle){
             clicktogle = !clicktogle
             isdarkba();
         }
 
+        console.log($(`#${idstamp}`).html());
+
         setTimeout(function(){
-            $('#timestamp-new').html('a second ago');
+            $(`#${idstamp}`).html('a second ago');
         },1000); 
 
         setTimeout(function(){
-            $('#timestamp-new').html('a minute ago');
+            $(`#${idstamp}`).html('a minute ago');
         },60000);
     
         setTimeout(function(){
-            $('#timestamp-new').html('an hour ago');
+            $('#'+idstamp).html('an hour ago');
         },3600000);
     });
 
     //for image
-
-    var imagenow;
+    var imagenow = '';
     
     $('.inpimg').on('change',function(e){
 

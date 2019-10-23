@@ -37,6 +37,12 @@ postBtn.addEventListener('click', function (e) {
   $('.actions').hide();
   $('.input-button').show();
   textInput.style.height = "34px"
+
+  if (night.checked){
+    $('.display-name').css("color", 'white');
+    $('.tweet-actions i').css("color", 'white');
+    $('p').css("color", 'white');
+  }
 });
 $('.actions').hide();
 
@@ -87,6 +93,7 @@ night.addEventListener('change', function (e) {
     $('.tweets').css("background-color", 'black');
     $('.nightMode').css("background-color", 'black');
     $('.tweet-actions i').css("color", 'white');
+    $('.dark').css("color", 'white');
   }else {
     $('.compose').css("background-color", '#E7F7FD');
     $('p').css("color", 'black');
@@ -94,5 +101,6 @@ night.addEventListener('change', function (e) {
     $('.tweets').css("background-color", 'white');
     $('.tweet-actions i').css("color", 'black');
     $('.nightMode').css("background-color", '#E7F7FD');
+    $('.dark').css("color", 'black');
   }
   });

@@ -120,6 +120,7 @@ main {
   flex-direction: row;
   border-top: 1px solid lightgray;
   padding: 8px;
+  word-break: break-all;
 }
 
 .tweets .tweet .message {
@@ -153,8 +154,8 @@ main {
 .switch {
   position: relative;
   display: inline-block;
-  width: 45px;
-  height: 20px;
+  width: 48px;
+  height: 22px;
 }
 
 /* Hide default HTML checkbox */
@@ -180,13 +181,13 @@ main {
 .slider:before {
   position: absolute;
   content: "";
-  height: 15px;
-  width: 15px;
+  height: 18px;
+  width: 18px;
   left: 2px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 input:checked + .slider {
@@ -198,9 +199,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
 }
 
 /* Rounded sliders */
@@ -219,4 +220,15 @@ input:checked + .slider:before {
    display: flex;
    justify-content: flex-end;
    align-content: center;
+}
+.dark{
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 5px;
+  font-weight: bold;
+}
+.slider{
+  font-size: 14px;
+  padding-left: 2px;
+  padding-top: 2px;
 }

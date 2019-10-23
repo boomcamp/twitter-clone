@@ -30,12 +30,12 @@ $(document).ready(function() {
   $(".post-tweet").on("click", function() {
     let post = `<div class="tweet">
     <div class="profile">
-      <img class="img-tweet-profile" src="img/funwatercat.jpg" />
+      <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
     </div>
     <div class="message">
       <div class="posted-by">
-        <span class="display-name">Michael</span>
-        <span class="handle">@sometwitterguy</span>
+        <span class="display-name">Jeff</span>
+        <span class="handle">@jeffguy</span>
       </div>
       <div class="content">
         <p>${$("textarea[id*='composeInput']").val()}</p>
@@ -49,6 +49,9 @@ $(document).ready(function() {
     </div>
   </div>`;
     $(".tweets").prepend(post);
+    let dt = new Date();
+    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    $(".tweet").append(time);
     $(".actions").hide();
     $(".input-button").show();
     $("#composeInput")
@@ -76,10 +79,5 @@ $(document).ready(function() {
       $("main").addClass("dark");
       $(".inner-switch").text("ON");
     }
-  });
-
-  //change image
-  $(".fa-image").on("click", function() {
-    console.log(this);
   });
 }); //document end

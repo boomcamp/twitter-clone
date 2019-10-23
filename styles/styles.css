@@ -160,6 +160,12 @@ main {
    justify-content: flex-end;
 }
 
+.toggle {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .switch {
    position: relative;
    display: inline-block;
@@ -230,6 +236,7 @@ input:checked + .slider:before {
 
 .dMode-text {
    text-transform: uppercase;
-   font-size: 12px;
+   font-size: 10px;
    font-weight: bold;
+   padding-right: 5px;
 }

@@ -67,6 +67,7 @@ $("document").ready(function() {
          $(".post-tweet").attr("disabled", true);
       }
       $(".message-count").text(280);
+      $(".message-count").css("color", "#13b5f0");
    }
 
    function darkMode() {

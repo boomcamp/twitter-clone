@@ -1,16 +1,15 @@
 const textInput = document.querySelector('#composeInput');
+const compose = document.querySelector('.compose');
 const tweetContent = document.querySelector('.tweetContent');
 const postBtn = document.querySelector('.post-tweet');
 const hiddenDiv = document.querySelector('.actions');
 const messageCount = document.querySelector('.message-count');
 var textarea = document.querySelector('textarea');
-postBtn.addEventListener('click', function(e){
-    const tweets = document.querySelector('.tweets');
-    var div = document.createElement("div");
-    // var compose = document.querySelector(".compose");
-    tweets.prepend(div);
-    // console.log(document.querySelector('main'))
-    div.innerHTML = `
+postBtn.addEventListener('click', function (e) {
+  const tweets = document.querySelector('.tweets');
+  var div = document.createElement("div");
+  tweets.prepend(div);
+  div.innerHTML = `
     <div class="tweet">
       <div class="profile">
         <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
@@ -19,7 +18,6 @@ postBtn.addEventListener('click', function(e){
         <div class="posted-by">
           <span class="display-name">Jeff</span>
           <span class="handle">@jeffguy</span>
-          <span class="timestamp">1 second ago</span>
         </div>
         <div class="content">
           <p>${textInput.value}</p>
@@ -32,33 +30,69 @@ postBtn.addEventListener('click', function(e){
         </div>
       </div>
     </div>`
+
   textInput.value = null;
   postBtn.disabled = true;
-  messageCount.textContent ='280';
+  messageCount.textContent = '280';
   $('.actions').hide();
   $('.input-button').show();
   textInput.style.height = "34px"
 });
 $('.actions').hide();
-textInput.addEventListener('focus', function(e){
-    $('.actions').show();
-    postBtn.disabled = true;
-    $('.input-button').hide();
-    textarea.setAttribute('class', 'expanded')
-});
-textInput.addEventListener('keyup', function(e){
-    postBtn.disabled = false;
-    textarea.setAttribute('class', 'expanded')
-    var len = 280 - textInput.value.length;
-    messageCount.textContent = len;
-    if (len <= 10){
-        messageCount.style.color = "red";
-    } else messageCount.style.color = "#13b5f0";
-});
-textInput.addEventListener('blur', function(e){
-    if (!textInput.value.length){
-        $('.actions').hide();
-        $('.input-button').show();
-        textarea.setAttribute('class', '')
+
+textInput.addEventListener('focus', function (e) {
+  $('.actions').show()
+  $('.input-button').hide();
+  $('textarea').addClass("expanded");
+  $('textarea').on('keypress input', function () {
+    checker($('textarea'));
+    if ($('textarea').val() !== "") {
+      $('.post-tweet').attr('disabled', false);
+    } else {
+      $('.post-tweet').attr('disabled', true);
     }
+  });
 });
+
+var maxCount = $('#composeInput').attr("maxlength");
+
+function checker(e) {
+  if (e.val().length > maxCount) {
+    e.val(e.val().substring(0, maxCount));
+  } else {
+    var remaining = maxCount - e.val().length;
+    $('.message-count').text(remaining);
+    if (remaining < 11) {
+      $('.message-count').addClass("danger");
+    } else {
+      $('.message-count').removeClass("danger");
+    }
+  }
+}
+
+textInput.addEventListener('blur', function (e) {
+  if (!textInput.value.length) {
+    $('.actions').hide();
+    $('.input-button').show();
+    textarea.setAttribute('class', '')
+  }
+});
+
+const night = document.querySelector('.night');
+night.addEventListener('change', function (e) {
+  if (night.checked){
+    $('.compose').css("background-color", 'black');
+    $('p').css("color", 'white');
+    $('.display-name').css("color", 'white');
+    $('.tweets').css("background-color", 'black');
+    $('.nightMode').css("background-color", 'black');
+    $('.tweet-actions i').css("color", 'white');
+  }else {
+    $('.compose').css("background-color", '#E7F7FD');
+    $('p').css("color", 'black');
+    $('.display-name').css("color", 'black');
+    $('.tweets').css("background-color", 'white');
+    $('.tweet-actions i').css("color", 'black');
+    $('.nightMode').css("background-color", '#E7F7FD');
+  }
+  });

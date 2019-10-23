@@ -101,7 +101,16 @@ main {
   font-weight: 500;
   font-size: 16px;
 }
-
+.dark{
+  height: 33px;
+  width: 72px;
+  border: none;
+  border-radius: 16px;
+  background-color: #13B5F0;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+}
 .post-tweet[disabled] {
   opacity: 0.3;
 }

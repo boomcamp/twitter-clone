@@ -40,16 +40,6 @@ composeInput.addEventListener("blur", function(event) {
   event.stopPropagation();
 });
 
-composeInput.addEventListener("blur", function(event) {
-  if (clicked && composeInput.value.length == 0) {
-    composeInput.classList.remove("expanded");
-    actions.style.display = "none";
-    inputButton.style.display = "";
-    clicked = false;
-  }
-  event.stopPropagation();
-});
-
 composeInput.addEventListener("focus", function(event) {
   if (!clicked) {
     actions.style.display = "";

@@ -39,7 +39,7 @@
           <div class="post-actions">
             <span class="message-count" data-testid="message-count">280</span>
             <button class="post-tweet" data-testid="post-tweet" disabled>Tweet</button>
-          </div>
+          </div> 
         </div>
       </div>
     </div>
@@ -97,7 +97,6 @@
         }
       })
       $('.actions').hide();
-      
       $('#myFile').change(function(e){
         var tmppath = URL.createObjectURL(event.target.files[0]);
         $('.tweets').prepend(`<div class='tweet'>
@@ -121,6 +120,11 @@
                   </div>
                 </div>
          </div>`);
+         if($("input[type=checkbox]").prop("checked")){
+          $('.img-tweet-profile').css('filter', 'invert(100%)');
+          $('.handle').css('filter', 'invert(100%)');    
+          $('.content img').css('filter', 'invert(100%)');   
+        }
       });
       $('.post-tweet').click(function () {
         $('.tweets').prepend(`<div class='tweet'>

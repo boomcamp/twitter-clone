@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "--- In this project you will need to implement some user interactions for a twitter clone. This clone isn't going to be an exact match with twitter but will be a good way to practice building interactive user experiences. You should have had an intro to JQuery at this point, so feel free to use JQuery to power your interactions.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "timeago.js": "^4.0.0"
+  },
   "devDependencies": {
     "dom-testing-library": "^4.0.1",
     "jest": "^24.8.0",

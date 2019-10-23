@@ -80,5 +80,111 @@
       </div>
     </main>
     <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script>
+      $(document).ready(function(){
+        var maxlen = $('#composeInput').attr("maxlength");
+        $('.actions').hide();
+        $('#composeInput').blur(function(){
+          if($(this).val() <= 0){
+            $('.actions').hide();
+            $('.input-button').show()
+            $('#composeInput').removeClass("expanded");
+          }
+        });
+
+        $('#composeInput').focus(function(){
+          $('.actions').show()
+          $('.input-button').hide();
+          $(this).addClass("expanded");
+          $(this).on('keypress input', function(){
+            limits($(this));
+            if($(this).val() !== ""){
+              $('.post-tweet').attr('disabled', false);
+            }else{
+              $('.post-tweet').attr('disabled', true);
+            }  
+          });
+          
+        });
+        function limits(e){
+          if(e.val().length > maxlen){
+            e.val(e.val().substring(0, maxlen));
+          }else{
+            var remaining = maxlen - e.val().length;
+            $('.message-count').text(remaining);
+            if(remaining < 11){
+              $('.message-count').addClass("danger");
+            }else{
+              $('.message-count').removeClass("danger");
+            }
+          }
+        }
+        
+        $('.post-tweet').on('click',function(){
+          var element = $(`
+          <div class='tweet'>
+            <div class='profile'>
+              <img class='img-tweet-profile' src='img/damenleeturks.jpg'/>
+            </div>
+            <div class='message'>
+              <div class='posted-by'>
+                <span class='display-name'>Franco</span>
+                <span class='handle'>@anothertwitterguy</span>
+                <span class='handle' id="time">a second ago</span>
+              </div>
+              <div class='content'>
+                <p>${$("#composeInput").val()}</p>
+              </div><div class='tweet-actions'>
+                <i class='far fa-comment'></i>
+                <i class='fas fa-retweet'></i>
+                <i class='far fa-heart'></i>
+                <i class='far fa-envelope'></i>
+              </div>
+            </div>
+          </div>`);
+          $('.tweets').prepend(element);
+          $('#composeInput').val('');
+          $('.actions').hide();
+          $('#composeInput').removeClass("expanded");
+          $('.message-count').text("280");
+          $('.input-button').show();
+        });
+        // for timestamp
+        count();t=0,m=0,h=0,d=0;
+        function count(){
+          setTimeout(function() {
+            timedCount()
+          }, 1000);
+        }
+        function timedCount() {
+          if(t < 60){
+            t += 1;
+            $("#time").text(`${t}seconds ago`);
+            if(t%60 === 0){
+              m += 1;
+              $("#time").text(`${m}min ago`);
+            }else if(t%3600 === 0){
+              h += 1;
+              $("#time").text(`${h}hr ago`);
+            }else if(t%86400 === 0){
+              d += 1;
+              $("#time").text(`${h}day ago`);
+            }
+          }
+          count()
+        }
+        //for dark mode
+        $('.input-container').append("<label class='switch'><input type='checkbox' class='thischeck'><span class='slider round'></span></label>");
+        $('.thischeck').change(function(){
+          if($('.thischeck').is(':checked')){
+            $('.compose').addClass("dark-panel");
+            $('.tweets').addClass("dark");
+          }else{
+            $('.compose').removeClass("dark-panel");
+            $('.tweets').removeClass("dark");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

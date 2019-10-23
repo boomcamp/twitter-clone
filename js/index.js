@@ -16,8 +16,8 @@ $(document).ready(function() {
       }
       //message-count
       let msgCount = $("#composeInput").attr("maxlength");
-      let count = msgCount - $(this).val().length;
-      $(".message-count").text(count);
+      msgCount -= $(this).val().length;
+      $(".message-count").text(msgCount);
       if (msgCount <= 10) {
         $(".message-count").addClass("danger");
       } else {
@@ -40,6 +40,9 @@ $(document).ready(function() {
       <div class="content">
         <p>${$("textarea[id*='composeInput']").val()}</p>
       </div>
+      <div class="time">
+          <p>Posted <time class="timeago" datetime="23 October 2019 4:37"></time></p>
+      </div>
       <div class="tweet-actions">
         <i class="far fa-comment"></i>
         <i class="fas fa-retweet"></i>
@@ -49,9 +52,7 @@ $(document).ready(function() {
     </div>
   </div>`;
     $(".tweets").prepend(post);
-    let dt = new Date();
-    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $(".tweet").append(time);
+    $("time.timeago").timeago();
     $(".actions").hide();
     $(".input-button").show();
     $("#composeInput")

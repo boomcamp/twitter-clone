@@ -178,3 +178,12 @@ main {
   color: #e6e6e6;
   border-color: #e6e6e6;
 }
+
+/* timestamp */
+.time {
+  display: flex;
+  justify-content: flex-end;
+  color: lightgray;
+  font-size: 12px;
+  line-height: 0%;
+}

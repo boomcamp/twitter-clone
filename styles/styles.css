@@ -147,4 +147,14 @@ main {
 .tweet .tweet-actions i {
   margin-right: 32px;
 }
+.lightMode,.darkMode{
+  border: none;
+  border-radius: 16px;
+  background-color: #13B5F0;
+  color: #fff;
+  cursor: pointer;
+}
+.lightMode{
+  display: none;
+}
 

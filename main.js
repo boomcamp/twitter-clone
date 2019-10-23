@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	var max = parseInt($("textarea").attr("maxlength"));
-
 	$(".actions").hide();
 	$(".input-container textarea").blur(function() {
 		if ($(".input-container textarea").val() == "") {
@@ -40,6 +39,7 @@ $(document).ready(function() {
 	//functions
 	function buttonchange() {
 		$(".message-count").text(max);
+
 		var total = max - $("textarea").val().length;
 
 		$(".message-count").text(total);

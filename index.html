@@ -15,10 +15,11 @@
     <div class="compose">
       <img class="img-profile" src="img/damenleeturks.jpg" alt="" />
       <div class="input-container">
-        <textarea placeholder="What's happening?" name="tweetText" id="composeInput" maxlength="280"
+        <textarea placeholder="What's happening? You can also tweet using an image!" name="tweetText" id="composeInput" maxlength="280"
           data-testid="tweet-input"></textarea>
         <div class="input-button" data-testid="input-button">
-          <i class="fas fa-image"></i>
+          <input type="file" name="myFile" id="myFile">
+          <label for="myFile"><i class="fas fa-image"></i></label>
         </div>
         <div class="actions" data-testid="tweet-actions">
           <div class="action-buttons">
@@ -82,6 +83,7 @@
           $('#composeInput').css('filter', 'invert(100%)'); 
           $('.handle').css('filter', 'invert(100%)');    
           $('.switch').attr('checked', true);
+          $('.content img').css('filter', 'invert(100%)'); 
         }else{
           $('html, body').css('background-color', 'white');
           $('main').css('filter', 'none');
@@ -91,9 +93,35 @@
           $('.handle').css('filter', 'none');    
           $('.handle').css('color', 'lightgray');  
           $('.switch').attr('checked', false);
+          $('.content img').css('filter', 'none'); 
         }
       })
       $('.actions').hide();
+      
+      $('#myFile').change(function(e){
+        var tmppath = URL.createObjectURL(event.target.files[0]);
+        $('.tweets').prepend(`<div class='tweet'>
+          <div class="profile">
+                  <img class="img-tweet-profile" src="img/damenleeturks.jpg" />
+                </div>
+                <div class="message">
+                  <div class="posted-by">
+                    <span class="display-name">Jeff</span>
+                    <span class="handle">@jeffguy</span>
+                    <span class="time-stamp">• <span class="time"> 1<span><span class='min'> min</span>ago</span>
+                  </div>
+                  <div class="content">
+                    <img src="${tmppath}" alt="">
+                  </div>
+                  <div class="tweet-actions">
+                    <i class="far fa-comment"></i>
+                    <i class="fas fa-retweet"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-envelope"></i>
+                  </div>
+                </div>
+         </div>`);
+      });
       $('.post-tweet').click(function () {
         $('.tweets').prepend(`<div class='tweet'>
           <div class="profile">
@@ -124,6 +152,7 @@
         if($("input[type=checkbox]").prop("checked")){
           $('.img-tweet-profile').css('filter', 'invert(100%)');
           $('.handle').css('filter', 'invert(100%)');    
+          $('.content img').css('filter', 'invert(100%)');   
         }
       });
       $('#composeInput').focus(function () {

@@ -197,3 +197,10 @@ input[type="checkbox"].switch:after{
 input[type="checkbox"].switch:checked:after{
   left: calc(100% - 1.5em);
 }
+input[type="file"] { display: none; }
+
+.content img{
+  width: 500px;
+  height: 300px;
+  padding: 1rem 0;
+}
